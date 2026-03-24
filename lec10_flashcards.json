@@ -1,0 +1,362 @@
+[
+  {
+    "id": 1,
+    "type": "flashcard",
+    "category": "C++ vs C",
+    "difficulty": "easy",
+    "question": "What header file replaces <stdio.h> in C++ for input/output, and what does it use?",
+    "answer": "<iostream>, which provides 'cin' for input and 'cout' for output — replacing C's scanf() and printf().",
+    "explanation": "This is one of the most visible syntactic differences when moving from C to C++. Instead of printf('Hello'), you write cout << 'Hello'."
+  },
+  {
+    "id": 2,
+    "type": "flashcard",
+    "category": "C++ vs C",
+    "difficulty": "medium",
+    "question": "What is the key difference in WHERE variables can be declared in C vs C++?",
+    "answer": "In C (C89/C90), variables must be declared at the TOP of a block. In C++, variables may be declared ANYWHERE in the block.",
+    "explanation": "This makes C++ more flexible. You can declare a variable close to where you first use it, improving readability."
+  },
+  {
+    "id": 3,
+    "type": "flashcard",
+    "category": "C++ vs C",
+    "difficulty": "medium",
+    "question": "How does C handle strings compared to C++?",
+    "answer": "C uses null-terminated character arrays (char[]) for strings. C++ provides a dedicated 'string' object (while also supporting C-style strings).",
+    "explanation": "The C++ string object is much easier to work with — it supports assignment, concatenation, and comparison operators natively."
+  },
+  {
+    "id": 4,
+    "type": "flashcard",
+    "category": "C++ vs C",
+    "difficulty": "medium",
+    "question": "What pass-by-reference mechanism does C++ have that C does NOT?",
+    "answer": "The reference type (&). C requires pointers for pass-by-reference; C++ allows EITHER pointers OR the reference type.",
+    "explanation": "Using '&' in a parameter declaration (e.g., void func(int &x)) makes x an alias for the argument — changes to x modify the original variable."
+  },
+  {
+    "id": 5,
+    "type": "flashcard",
+    "category": "C++ vs C",
+    "difficulty": "medium",
+    "question": "What error-handling mechanism does C++ have that C does not natively support?",
+    "answer": "Built-in exception handling via try-catch blocks.",
+    "explanation": "C has no native try-catch. C++ allows wrapping risky code in 'try' and handling failures in 'catch', making error management structured and safe."
+  },
+  {
+    "id": 6,
+    "type": "flashcard",
+    "category": "C++ vs C",
+    "difficulty": "medium",
+    "question": "What programming paradigms does C++ support that plain C does NOT?",
+    "answer": "Object-Oriented Programming. C only supports procedural programming; C++ supports BOTH procedural and OOP.",
+    "explanation": "This is the core reason C++ was created — Bjarne Stroustrup started with 'C with Classes' in 1979 to add OOP capabilities to C."
+  },
+  {
+    "id": 7,
+    "type": "flashcard",
+    "category": "C++ vs C",
+    "difficulty": "medium",
+    "question": "What is a namespace in C++ and does C support it?",
+    "answer": "A namespace groups identifiers to avoid naming conflicts. C++ has built-in namespace support; C does NOT.",
+    "explanation": "'using namespace std;' is the most common example — it allows using cout/cin without the 'std::' prefix. C has no equivalent mechanism."
+  },
+  {
+    "id": 8,
+    "type": "flashcard",
+    "category": "Pointers & References",
+    "difficulty": "easy",
+    "question": "What do the three pointer-related expressions ptr, *ptr, and &ptr each mean?",
+    "answer": "ptr = the address it stores (what's in its box); *ptr = the value at that address (dereference); &ptr = the pointer's OWN address in memory.",
+    "explanation": "Using the house analogy from the lecture: ptr is the address on a box the pointer holds, *ptr is the value inside that house, &ptr is the pointer's own house number."
+  },
+  {
+    "id": 9,
+    "type": "flashcard",
+    "category": "Pointers & References",
+    "difficulty": "medium",
+    "question": "How do you declare a reference parameter in a C++ function prototype?",
+    "answer": "Using '&' after the type: void func(int &x). The '&' MUST appear in BOTH the prototype AND the function header.",
+    "explanation": "Example: void doubleNum(int &refVar) { refVar *= 2; } — changes to refVar directly modify the original argument passed by the caller."
+  },
+  {
+    "id": 10,
+    "type": "flashcard",
+    "category": "Pointers & References",
+    "difficulty": "medium",
+    "question": "When should you NOT use reference parameters in C++?",
+    "answer": "1) When the argument should NOT be changed by the function, and 2) when the function only needs to return ONE value.",
+    "explanation": "Reference parameters imply intent to modify. Using them unnecessarily misleads readers of your code into thinking the value will change."
+  },
+  {
+    "id": 11,
+    "type": "flashcard",
+    "category": "Pointers & References",
+    "difficulty": "hard",
+    "question": "Why do reference parameters allow a function to 'return' more than one value?",
+    "answer": "Because changes to reference parameters directly modify the original variables in the CALLING environment — so multiple caller variables can be updated by one function.",
+    "explanation": "Example: void getMinMax(int arr[], int size, int &min, int &max) — both min and max are updated in the caller via references, effectively returning two values."
+  },
+  {
+    "id": 12,
+    "type": "flashcard",
+    "category": "Pointers & References",
+    "difficulty": "hard",
+    "question": "What is the key difference between a pointer and a reference variable in C++?",
+    "answer": "A pointer stores a memory address and CAN be reassigned to point to different variables. A reference is a fixed ALIAS for one variable and cannot be reassigned after initialization.",
+    "explanation": "int &ref = x; — ref is now permanently x. You cannot later write ref = y to make it reference y. Pointers have no such restriction."
+  },
+  {
+    "id": 13,
+    "type": "flashcard",
+    "category": "Pointers & References",
+    "difficulty": "hard",
+    "question": "What type of argument CANNOT be passed to a reference parameter?",
+    "answer": "Expressions and constants. Only variables can be passed to reference parameters.",
+    "explanation": "You cannot write func(5) or func(x + 1) if func takes a reference parameter. You need func(myVar) where myVar is an actual variable."
+  },
+  {
+    "id": 14,
+    "type": "flashcard",
+    "category": "C++ Features",
+    "difficulty": "easy",
+    "question": "What header is required to use I/O stream manipulators like setw() and setprecision()?",
+    "answer": "#include <iomanip>",
+    "explanation": "iomanip = I/O manipulation. Without this header, setw(), setprecision(), fixed, and showpoint are not available."
+  },
+  {
+    "id": 15,
+    "type": "flashcard",
+    "category": "C++ Features",
+    "difficulty": "medium",
+    "question": "What does setw(x) do, and does it persist across multiple output statements?",
+    "answer": "setw(x) prints the next value in a field at least x spaces wide. It only affects the NEXT value — it does NOT persist.",
+    "explanation": "If the value needs more than x spaces, it uses as many as needed. Unlike fixed or setprecision, setw must be repeated before each value you want padded."
+  },
+  {
+    "id": 16,
+    "type": "flashcard",
+    "category": "C++ Features",
+    "difficulty": "medium",
+    "question": "What is the difference between setprecision(x) WITH and WITHOUT 'fixed'?",
+    "answer": "WITH fixed: prints exactly x digits AFTER the decimal point. WITHOUT fixed: prints x SIGNIFICANT digits total.",
+    "explanation": "Example: setprecision(3) on 3.14159 — without fixed gives '3.14' (3 sig digits); with fixed gives '3.142' (3 decimal places)."
+  },
+  {
+    "id": 17,
+    "type": "flashcard",
+    "category": "C++ Features",
+    "difficulty": "medium",
+    "question": "What does the 'showpoint' stream manipulator do?",
+    "answer": "Forces the decimal point AND trailing zeros to always display for floating-point values, even when there is no fractional part.",
+    "explanation": "Without showpoint, cout << 5.0 may display '5'. With showpoint it displays '5.00000' (or similar based on precision settings)."
+  },
+  {
+    "id": 18,
+    "type": "flashcard",
+    "category": "C++ Features",
+    "difficulty": "medium",
+    "question": "What is a struct in C++ and how can struct variables be initialized?",
+    "answer": "A struct groups multiple variables of different types under one name. It can be initialized at definition (e.g., Student s = {11465, 'Joan', 2, 3.75}) or member by member (s.name = 'Joan').",
+    "explanation": "Unlike C, C++ structs can also contain methods and support most OOP features. The key difference from a class is that struct members are public by default."
+  },
+  {
+    "id": 19,
+    "type": "flashcard",
+    "category": "C++ Features",
+    "difficulty": "medium",
+    "question": "What are vectors in C++ and what header do they require?",
+    "answer": "Vectors are dynamic arrays that can resize automatically. They require #include <vector>. Example: vector<int> numbers {10, 20, 30}.",
+    "explanation": "Unlike plain arrays with a fixed size, vectors grow/shrink as needed. They also support range-based for loops: for (int val : numbers) { cout << val; }"
+  },
+  {
+    "id": 20,
+    "type": "flashcard",
+    "category": "C++ Features",
+    "difficulty": "hard",
+    "question": "Why might using 'cin >>' to read strings cause problems, and what is the fix?",
+    "answer": "cin >> skips leading whitespace (spaces, tabs, newlines), which can cause issues reading multi-word input. Use getline(cin, variable) instead.",
+    "explanation": "If a previous cin >> left a newline in the buffer, the next getline() may read an empty string. You may need cin.ignore() to clear the buffer first."
+  },
+  {
+    "id": 21,
+    "type": "flashcard",
+    "category": "Dynamic Memory",
+    "difficulty": "medium",
+    "question": "What are 'The Big 3' in C++?",
+    "answer": "Destructor, Copy Constructor, and Assignment Operator — the three special member functions that manage an object's full lifecycle.",
+    "explanation": "These are critical when your class manages dynamic memory. If you write one, you typically need all three to avoid memory leaks and shallow copy issues."
+  },
+  {
+    "id": 22,
+    "type": "flashcard",
+    "category": "Dynamic Memory",
+    "difficulty": "hard",
+    "question": "What is a Copy Constructor in C++ and when is it invoked?",
+    "answer": "A special constructor called when a NEW object is initialized FROM an existing object of the same class. It handles deep copying of resources.",
+    "explanation": "Analogous to Java's clone() method, but no interface (like Cloneable) is required. Example trigger: MyClass obj2 = obj1; — this calls the copy constructor."
+  },
+  {
+    "id": 23,
+    "type": "flashcard",
+    "category": "Dynamic Memory",
+    "difficulty": "hard",
+    "question": "What is the purpose of a destructor in C++, and why is it important compared to Java?",
+    "answer": "A destructor explicitly frees resources (like heap memory) when an object is destroyed. Unlike Java, C++ has no automatic garbage collection, so manual cleanup is critical.",
+    "explanation": "Syntax: ~ClassName() { /* cleanup */ }. Without a destructor, dynamic memory allocated with 'new' may never be freed, causing memory leaks."
+  },
+  {
+    "id": 24,
+    "type": "flashcard",
+    "category": "Dynamic Memory",
+    "difficulty": "hard",
+    "question": "What does operator overloading allow in C++?",
+    "answer": "Defining CUSTOM behavior for operators like =, +, - when applied to user-defined types (classes/structs).",
+    "explanation": "Example: overloading + for a Vector2D class so 'v1 + v2' adds coordinates. Without overloading, + on a custom class would cause a compile error."
+  },
+  {
+    "id": 25,
+    "type": "flashcard",
+    "category": "OOP Concepts",
+    "difficulty": "easy",
+    "question": "What are the four core pillars of Object-Oriented Programming?",
+    "answer": "Encapsulation, Inheritance, Polymorphism, and Abstraction.",
+    "explanation": "These apply across all OOP languages (Java, C++, Python, etc.). They're the transferable OOP concepts at the heart of this course."
+  },
+  {
+    "id": 26,
+    "type": "flashcard",
+    "category": "OOP Concepts",
+    "difficulty": "medium",
+    "question": "In C++, what is the role of header files (.h) vs source files (.cpp)?",
+    "answer": "Header (.h) files store DECLARATIONS of private/public variables and method signatures. Source (.cpp) files contain the IMPLEMENTATION/code.",
+    "explanation": "Similar to how procedural C declares functions at the top before defining them. The header is essentially the class's 'contract' or 'blueprint'."
+  },
+  {
+    "id": 27,
+    "type": "flashcard",
+    "category": "OOP Concepts",
+    "difficulty": "medium",
+    "question": "What is the difference between 'Scalable' and 'Extensible' in good software design?",
+    "answer": "Scalable = the system can handle increased load by adding resources (more users, data). Extensible = new features can be added without redesigning the whole system.",
+    "explanation": "Restaurant analogy: Scalable = serve 20 or 200 customers by adding chefs/tables. Extensible = add new dishes to the menu without redesigning the kitchen."
+  },
+  {
+    "id": 28,
+    "type": "flashcard",
+    "category": "OOP Concepts",
+    "difficulty": "hard",
+    "question": "What does 'Graceful' mean as a software quality attribute?",
+    "answer": "The system degrades gracefully under stress — it slows down or reduces functionality under heavy load, but does NOT completely collapse.",
+    "explanation": "Restaurant analogy: When very busy, service slows but still works. The opposite is a system crash or complete failure when under pressure."
+  },
+  {
+    "id": 29,
+    "type": "flashcard",
+    "category": "Design Patterns",
+    "difficulty": "medium",
+    "question": "What problem does the Factory design pattern solve?",
+    "answer": "It centralizes object creation, allowing you to create objects WITHOUT specifying the exact class to instantiate at the point of creation.",
+    "explanation": "The client asks the factory for an object (e.g., ShapeFactory.getShape('circle')) — it doesn't need to know Circle's constructor or details."
+  },
+  {
+    "id": 30,
+    "type": "flashcard",
+    "category": "Design Patterns",
+    "difficulty": "hard",
+    "question": "How does Abstract Factory differ from Factory pattern? Give a game context example.",
+    "answer": "Factory creates ONE type of object. Abstract Factory creates FAMILIES of related objects. Game example: same Enemy/Player entities in Forest vs Fire vs Water themes — each theme is a factory producing its family of objects.",
+    "explanation": "Abstract Factory has a higher level of abstraction. FactoryProducer returns the right AbstractFactory (ForestFactory or FireFactory), which then creates the matching themed objects."
+  },
+  {
+    "id": 31,
+    "type": "flashcard",
+    "category": "Design Patterns",
+    "difficulty": "medium",
+    "question": "What is the Singleton design pattern and what problem does it solve?",
+    "answer": "Ensures a class has only ONE instance throughout the application, and provides a global access point to it. Solves the problem of multiple conflicting instances.",
+    "explanation": "Common use cases: game managers, configuration settings, logging systems. Only one GameManager should exist — Singleton enforces this."
+  },
+  {
+    "id": 32,
+    "type": "flashcard",
+    "category": "Design Patterns",
+    "difficulty": "hard",
+    "question": "What are the SOLID principles? Name and briefly describe each.",
+    "answer": "S=Single Responsibility (one reason to change), O=Open/Closed (open to extension, closed to modification), L=Liskov Substitution (subtypes replaceable), I=Interface Segregation (specific interfaces), D=Dependency Inversion (depend on abstractions).",
+    "explanation": "These five principles guide writing maintainable, scalable OO code. They're language-agnostic and apply to Java, C++, and beyond."
+  },
+  {
+    "id": 33,
+    "type": "flashcard",
+    "category": "Problem Solving",
+    "difficulty": "easy",
+    "question": "What are the five phases of Design Thinking in order?",
+    "answer": "Empathize → Define → Ideate → Prototype → Test",
+    "explanation": "The process starts by understanding the user (Empathize), then clarifying the problem (Define), generating ideas (Ideate), building (Prototype), and validating (Test)."
+  },
+  {
+    "id": 34,
+    "type": "flashcard",
+    "category": "Problem Solving",
+    "difficulty": "medium",
+    "question": "What are the six phases of the software development problem-solving process from the lecture?",
+    "answer": "Problem Definition → Problem Solution → Solution Design → Software Design → Task Identification → Task Assignment → Operationalization",
+    "explanation": "The key insight is DESIGN FIRST before developing anything. Each phase builds on the last, and skipping ahead typically causes more rework."
+  },
+  {
+    "id": 35,
+    "type": "flashcard",
+    "category": "Problem Solving",
+    "difficulty": "medium",
+    "question": "What is 'Operationalization' in the problem-solving framework?",
+    "answer": "The actual creation/building of the solution. It involves learning through failure, with all prior design steps helping to mitigate issues encountered.",
+    "explanation": "Operationalization is the last phase — only reached after thorough design. The more effort in earlier phases, the fewer problems arise during this phase."
+  },
+  {
+    "id": 36,
+    "type": "flashcard",
+    "category": "Problem Solving",
+    "difficulty": "hard",
+    "question": "What is the distinction between 'Mechanics' and 'Core Mechanics' in game/simulation design?",
+    "answer": "Mechanics = everything the user CAN do. Core Mechanics = what the user does MOST OF THE TIME — must be interesting, engaging, and intuitive.",
+    "explanation": "Core mechanics define the gameplay loop. Getting them right is the most critical design decision. Simple + engaging is the winning formula."
+  },
+  {
+    "id": 37,
+    "type": "flashcard",
+    "category": "Problem Solving",
+    "difficulty": "hard",
+    "question": "What is 'stealth learning' and why is it considered the holy grail of game-based learning?",
+    "answer": "Learning that happens naturally THROUGH gameplay, with the educational content so embedded that the player learns without consciously realizing it.",
+    "explanation": "Contrast with bad educational games that interrupt play with quizzes or info sheets. Kerbal Space Program teaches orbital mechanics through play — players don't feel 'taught'."
+  },
+  {
+    "id": 38,
+    "type": "flashcard",
+    "category": "Transferable Concepts",
+    "difficulty": "medium",
+    "question": "Which common data type exists in C, C++, and Java, and which critical type does C notably LACK?",
+    "answer": "All three share int, float, void, char, double. C notably lacks: boolean (uses int instead) and string as a native type (uses char[] instead).",
+    "explanation": "This makes C lower-level. When transitioning, remember you need to simulate booleans with ints and strings with char arrays in pure C."
+  },
+  {
+    "id": 39,
+    "type": "flashcard",
+    "category": "Transferable Concepts",
+    "difficulty": "hard",
+    "question": "What do the type modifiers 'short', 'long', 'unsigned', and 'signed' do in C/C++?",
+    "answer": "They adjust the size or sign range of base types. short int = 16-bit; long int = 32-bit; unsigned int = 0 to 65,535 (no negatives); signed int = uses a bit to store the sign.",
+    "explanation": "These are important for memory optimization in embedded/systems programming. 'unsigned' doubles the positive range by removing negative values."
+  },
+  {
+    "id": 40,
+    "type": "flashcard",
+    "category": "Transferable Concepts",
+    "difficulty": "hard",
+    "question": "What mindset principle does the lecture emphasize for programmers transitioning between languages, especially in the age of AI?",
+    "answer": "Growth Mindset — 'I can' vs 'I can't'. Focus on transferable concepts (all languages share core ideas), not syntax differences. Choose languages by FIT FOR PURPOSE, not familiarity. AI helps but you still choose the right tool.",
+    "explanation": "Languages evolve and are replaced. Programmers who understand core concepts (OOP, data structures, algorithms) can adapt to any new language quickly."
+  }
+]

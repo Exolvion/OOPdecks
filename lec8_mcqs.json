@@ -1,0 +1,452 @@
+[
+  {
+    "id": 31,
+    "type": "mcq",
+    "category": "OOP Recap",
+    "difficulty": "easy",
+    "question": "Which OOP relationship is described as a 'has-a' relationship where Class B exists independently of Class A?",
+    "options": [
+      "Inheritance",
+      "Association",
+      "Aggregation",
+      "Abstraction"
+    ],
+    "correct": 2,
+    "explanation": "Aggregation is a 'has-a' relationship where A holds a reference to B, but B has its own independent lifecycle. Composition is also 'has-a' but B's lifecycle is tied to A. Inheritance is 'is-a'. Association is 'using'."
+  },
+  {
+    "id": 32,
+    "type": "mcq",
+    "category": "OOP Recap",
+    "difficulty": "easy",
+    "question": "Consider: 'private Brain myBrain = new Brain();' inside a Robot class. What type of relationship is this?",
+    "options": [
+      "Association",
+      "Aggregation",
+      "Inheritance",
+      "Composition"
+    ],
+    "correct": 3,
+    "explanation": "Robot creates Brain internally using 'new', meaning Robot owns Brain's entire lifecycle. This is Composition \u2014 a strong 'has-a' relationship where B (Brain) cannot exist without A (Robot)."
+  },
+  {
+    "id": 33,
+    "type": "mcq",
+    "category": "OOP Recap",
+    "difficulty": "medium",
+    "question": "Consider: 'public void PickUpWeapon(Weapon gun) { weapon = gun; }' in a Robot class. What type of relationship is this between Robot and Weapon?",
+    "options": [
+      "Composition",
+      "Aggregation",
+      "Inheritance",
+      "Association"
+    ],
+    "correct": 1,
+    "explanation": "Weapon is passed IN to Robot from outside (not created by Robot) and stored as a reference. Robot holds a reference but doesn't own the Weapon's lifecycle \u2014 this is Aggregation."
+  },
+  {
+    "id": 34,
+    "type": "mcq",
+    "category": "Engine vs Concrete Layer",
+    "difficulty": "easy",
+    "question": "Which of the following best describes the Engine Layer?",
+    "options": [
+      "Game-specific logic such as scoring and player movement",
+      "A common reusable core with components that can power multiple applications",
+      "The visual tools and editors used to build a game",
+      "The concrete classes for specific enemy types"
+    ],
+    "correct": 1,
+    "explanation": "The Engine Layer is the general, reusable foundation. It is not tied to one specific game and can theoretically power many different applications."
+  },
+  {
+    "id": 35,
+    "type": "mcq",
+    "category": "Engine vs Concrete Layer",
+    "difficulty": "medium",
+    "question": "Which statement about the relationship between Engine and Game/Simulation is TRUE?",
+    "options": [
+      "Both the Engine and the Game can exist independently",
+      "A Game can exist without the Engine if designed carefully",
+      "The Engine can exist without the Game, but the Game cannot exist without the Engine",
+      "The Engine cannot exist without at least one Game using it"
+    ],
+    "correct": 2,
+    "explanation": "The lecture explicitly states: 'Engines can exist with little to no game/simulation context' and 'Games/Simulations cannot exist without the engine.' The engine is the dependency."
+  },
+  {
+    "id": 36,
+    "type": "mcq",
+    "category": "Engine vs Concrete Layer",
+    "difficulty": "medium",
+    "question": "Which of the following is a Concrete Layer concern, NOT an Engine Layer concern?",
+    "options": [
+      "Physics collision detection system",
+      "Input handling component",
+      "Scoring logic that reacts to enemy death",
+      "Entity base class with position and velocity"
+    ],
+    "correct": 2,
+    "explanation": "Scoring logic that reacts to a specific game event (enemy death) is game-specific \u2014 it belongs in the Concrete Layer. Physics, input handling, and a base Entity class are general, reusable engine components."
+  },
+  {
+    "id": 37,
+    "type": "mcq",
+    "category": "Software Engineering Terminology",
+    "difficulty": "easy",
+    "question": "What is a Software Component?",
+    "options": [
+      "A specific algorithm used in one class",
+      "A software unit with a well-defined interface and explicitly specified dependencies",
+      "A design pattern that manages object creation",
+      "A hardware module that interfaces with the OS"
+    ],
+    "correct": 1,
+    "explanation": "A software component is formally defined as a unit with a well-defined interface and explicit dependencies. It can scale from a small reusable code block to an entire application."
+  },
+  {
+    "id": 38,
+    "type": "mcq",
+    "category": "Software Engineering Terminology",
+    "difficulty": "medium",
+    "question": "Which of the following is an Architectural Pattern?",
+    "options": [
+      "Singleton",
+      "Observer",
+      "Model-View-Controller (MVC)",
+      "Factory"
+    ],
+    "correct": 2,
+    "explanation": "MVC is an Architectural Pattern \u2014 it defines how major system components (Model, View, Controller) are structured and interact. Singleton, Observer, and Factory are Design Patterns that operate at the code/class level."
+  },
+  {
+    "id": 39,
+    "type": "mcq",
+    "category": "Software Engineering Terminology",
+    "difficulty": "medium",
+    "question": "Design Patterns differ from Architectural Patterns because Design Patterns...",
+    "options": [
+      "Define the overall system structure and how major components interact",
+      "Operate at the code/class level, existing within components",
+      "Are only applicable to object-oriented languages",
+      "Replace the need for software architecture"
+    ],
+    "correct": 1,
+    "explanation": "Design patterns work at the micro level \u2014 within components, showing relationships between classes or objects. Architectural patterns work at the macro level \u2014 defining system-wide structure."
+  },
+  {
+    "id": 40,
+    "type": "mcq",
+    "category": "Software Engineering Terminology",
+    "difficulty": "hard",
+    "question": "Which Design Pattern category does 'Singleton' belong to?",
+    "options": [
+      "Structural",
+      "Behavioural",
+      "Creational",
+      "Architectural"
+    ],
+    "correct": 2,
+    "explanation": "Singleton is a Creational pattern \u2014 it controls HOW objects are created (ensuring only one instance exists). Structural patterns deal with composition; Behavioural patterns deal with communication."
+  },
+  {
+    "id": 41,
+    "type": "mcq",
+    "category": "Software Engineering Terminology",
+    "difficulty": "hard",
+    "question": "Which Design Pattern category does 'Observer' belong to?",
+    "options": [
+      "Creational",
+      "Structural",
+      "Behavioural",
+      "Architectural"
+    ],
+    "correct": 2,
+    "explanation": "Observer is a Behavioural pattern \u2014 it deals with HOW objects communicate (subscribers are notified when a subject changes state). Behavioural patterns define interaction protocols between objects."
+  },
+  {
+    "id": 42,
+    "type": "mcq",
+    "category": "Software Engineering Terminology",
+    "difficulty": "hard",
+    "question": "Which Design Pattern category does 'Adapter' belong to?",
+    "options": [
+      "Creational",
+      "Structural",
+      "Behavioural",
+      "Layered"
+    ],
+    "correct": 1,
+    "explanation": "Adapter is a Structural pattern \u2014 it deals with HOW classes/objects are composed (allowing incompatible interfaces to work together by wrapping one in an adapter)."
+  },
+  {
+    "id": 43,
+    "type": "mcq",
+    "category": "Java Packages",
+    "difficulty": "easy",
+    "question": "What is the purpose of Java packages?",
+    "options": [
+      "To speed up compile time",
+      "To avoid name conflicts and improve code maintainability",
+      "To enforce all classes to be public",
+      "To automatically generate getter and setter methods"
+    ],
+    "correct": 1,
+    "explanation": "Packages group related classes, avoid naming conflicts (two classes with the same name in different packages are distinguishable), and create a maintainable, organised folder-like structure."
+  },
+  {
+    "id": 44,
+    "type": "mcq",
+    "category": "Java Packages",
+    "difficulty": "easy",
+    "question": "Given the import 'import com.badlogic.gdx.math.Rectangle;', what does this tell you?",
+    "options": [
+      "It imports every class in the com.badlogic.gdx.math package",
+      "It imports only the Rectangle class from the com.badlogic.gdx.math package",
+      "It creates a new Rectangle package",
+      "It inherits from Rectangle"
+    ],
+    "correct": 1,
+    "explanation": "Specifying the full class name (import package.ClassName) imports only that specific class. Using 'import com.badlogic.gdx.math.*' would import all classes in the package."
+  },
+  {
+    "id": 45,
+    "type": "mcq",
+    "category": "Java Packages",
+    "difficulty": "medium",
+    "question": "Class Brain is in package 'Controllers' with a protected field 'IsZombie'. Class Animal is in package 'Animals' and does NOT extend Brain. Can Animal access IsZombie?",
+    "options": [
+      "Yes, because protected means accessible from anywhere",
+      "Yes, if Animal imports the Controllers package",
+      "No, because Animal is in a different package and doesn't inherit from Brain",
+      "No, because protected fields can only be accessed within the same class"
+    ],
+    "correct": 2,
+    "explanation": "Protected access from OUTSIDE the declaring package requires inheritance. Animal is in a different package and doesn't extend Brain, so it fails both conditions. It would work if Animal extended Brain OR if Animal were inside the Controllers package."
+  },
+  {
+    "id": 46,
+    "type": "mcq",
+    "category": "Java Packages",
+    "difficulty": "medium",
+    "question": "Class Fish is in package 'Controllers' and does NOT extend Brain. Brain is also in package 'Controllers' with a protected field 'IsZombie'. Can Fish directly access IsZombie on a Brain object?",
+    "options": [
+      "No, because Fish doesn't extend Brain",
+      "No, because protected fields are always private to their class",
+      "Yes, because Fish is in the same package as Brain",
+      "Yes, but only through getter methods"
+    ],
+    "correct": 2,
+    "explanation": "Protected members are accessible to ALL classes within the SAME package, regardless of inheritance. Fish qualifies because it shares the 'Controllers' package with Brain."
+  },
+  {
+    "id": 47,
+    "type": "mcq",
+    "category": "Java Packages",
+    "difficulty": "hard",
+    "question": "Review this code snippet:\n\npackage com.mygdx.game;\nimport Controllers.Brain;\npublic class Entity {\n  private Brain myBrain = new Brain();\n  public void selfTurnZombie() {\n    myBrain.IsZombie = true; // Line X\n  }\n}\n\nWhy does Line X cause a compile-time error?",
+    "options": [
+      "myBrain is private and can't be used inside Entity",
+      "Entity is in a different package from Brain and doesn't extend Brain, so it can't access the protected field IsZombie",
+      "IsZombie should be accessed via a static method",
+      "Entity needs to implement an interface to access Brain's fields"
+    ],
+    "correct": 1,
+    "explanation": "IsZombie is a protected field in Brain (package Controllers). Entity is in package com.mygdx.game \u2014 a different package \u2014 and does not extend Brain. Neither condition for protected access is met, so direct access causes a compile error."
+  },
+  {
+    "id": 48,
+    "type": "mcq",
+    "category": "Java Packages",
+    "difficulty": "medium",
+    "question": "What is the recommended access modifier philosophy from the lecture?",
+    "options": [
+      "Everything should be public so all classes can work together",
+      "Everything should be protected to allow subclass access",
+      "Everything should be private unless it really needs to be public",
+      "Access modifiers should only be applied to methods, not fields"
+    ],
+    "correct": 2,
+    "explanation": "The lecture explicitly states: 'Everything should be private unless it REALLY needs to be public.' This enforces encapsulation \u2014 access is a form of control that determines if, how, and where interactions happen."
+  },
+  {
+    "id": 49,
+    "type": "mcq",
+    "category": "Java Packages",
+    "difficulty": "easy",
+    "question": "When you drag a class into a package in Eclipse, what happens automatically?",
+    "options": [
+      "The class is deleted from its original location",
+      "The class inherits from the package",
+      "The package name is automatically assigned to the class (e.g. 'package input;') and imports are updated",
+      "The class becomes abstract"
+    ],
+    "correct": 2,
+    "explanation": "Eclipse (and most IDEs) handles refactoring when you move a class into a package \u2014 it adds the 'package xyz;' declaration at the top of the class and updates all import statements where the class was used."
+  },
+  {
+    "id": 50,
+    "type": "mcq",
+    "category": "Engine vs Concrete Layer",
+    "difficulty": "hard",
+    "question": "Unreal Engine is described as 'not a catch-all'. Which limitation is mentioned in the lecture?",
+    "options": [
+      "It cannot render 3D graphics",
+      "Replication for non-character objects and fast movement is poorly supported",
+      "It does not support multiplayer games at all",
+      "It lacks a scripting layer"
+    ],
+    "correct": 1,
+    "explanation": "The lecture notes Unreal's limitations: 'Replication for non character objects bad' and 'Replication for fast movement not well supported.' This illustrates that even professional engines are 'catch-some' rather than 'catch-all'."
+  },
+  {
+    "id": 51,
+    "type": "mcq",
+    "category": "Software Engineering Terminology",
+    "difficulty": "medium",
+    "question": "What does Software Architecture provide in terms of system complexity?",
+    "options": [
+      "It eliminates all system complexity by automating component interaction",
+      "It provides an abstraction for managing system complexity and establishes communication/coordination mechanisms between components",
+      "It enforces that all components must be written in the same programming language",
+      "It replaces the need for design patterns"
+    ],
+    "correct": 1,
+    "explanation": "Software Architecture serves as a blueprint and abstraction layer \u2014 it helps manage complexity by defining how components communicate and coordinate without exposing all internal details."
+  },
+  {
+    "id": 52,
+    "type": "mcq",
+    "category": "Software Engineering Terminology",
+    "difficulty": "hard",
+    "question": "How many Design Patterns are listed in the lecture's classification diagram?",
+    "options": [
+      "10",
+      "15",
+      "23",
+      "30"
+    ],
+    "correct": 2,
+    "explanation": "The lecture's diagram shows 23 design patterns: 5 Creational (Singleton, Factory, Abstract Factory, Builder, Prototype), 7 Structural (Adapter, Composite, Proxy, Fly Weight, Facade, Bridge, Decorator), and 11 Behavioural (Template Method, Mediator, Chain of Responsibility, Observer, Strategy, Command, State, Visitor, Iterator, Interpreter, Memento)."
+  },
+  {
+    "id": 53,
+    "type": "mcq",
+    "category": "Java Packages",
+    "difficulty": "medium",
+    "question": "How does grouping classes into packages relate to the concept of Software Components?",
+    "options": [
+      "They are unrelated \u2014 packages are a Java syntax feature only",
+      "Packages act as a simplified implementation of software components, grouping related classes with clear boundaries",
+      "Packages replace the need for software components in Java",
+      "Software components require packages to compile correctly"
+    ],
+    "correct": 1,
+    "explanation": "The lecture explicitly says to 'Consider Components' when organising classes into packages. A package grouping related classes (e.g. a 'physics' package) is a practical approximation of a software component with a well-defined boundary."
+  },
+  {
+    "id": 54,
+    "type": "mcq",
+    "category": "OOP Recap",
+    "difficulty": "easy",
+    "question": "What is an Abstract class in OOP?",
+    "options": [
+      "A class that cannot have any methods",
+      "A class that cannot be instantiated directly and may contain abstract methods that subclasses must implement",
+      "A class where all fields are private",
+      "A class that can only be used via aggregation"
+    ],
+    "correct": 1,
+    "explanation": "Abstract classes serve as templates \u2014 they define a contract (abstract methods) that concrete subclasses must fulfil. They cannot be instantiated directly, enforcing that only fully implemented subclasses are used."
+  },
+  {
+    "id": 55,
+    "type": "mcq",
+    "category": "Engine vs Concrete Layer",
+    "difficulty": "medium",
+    "question": "What does the analogy of 'improving under the hood doesn't always change what the user sees on the surface' mean in engine development?",
+    "options": [
+      "Engine improvements are invisible to players but make the system more robust",
+      "Only visual changes matter for the final product",
+      "The engine and game are the same thing",
+      "Players must always be informed of backend changes"
+    ],
+    "correct": 0,
+    "explanation": "Refactoring the engine (better architecture, design patterns, package organisation) may not visibly change the running game, but it improves maintainability, extensibility, and robustness \u2014 making the system superior."
+  },
+  {
+    "id": 56,
+    "type": "mcq",
+    "category": "OOP Recap",
+    "difficulty": "medium",
+    "question": "Which access modifier has the widest scope in Java?",
+    "options": [
+      "private",
+      "protected",
+      "package-private (no modifier)",
+      "public"
+    ],
+    "correct": 3,
+    "explanation": "Public members are accessible from ANY class, anywhere. Private = same class only. Package-private = same package. Protected = same package + subclasses in other packages. Public = everywhere."
+  },
+  {
+    "id": 57,
+    "type": "mcq",
+    "category": "Java Packages",
+    "difficulty": "hard",
+    "question": "Which of the following import statements correctly imports only the InputController class from a user-defined 'input' package?",
+    "options": [
+      "import input;",
+      "import input.*;",
+      "import input.InputController;",
+      "include input.InputController;"
+    ],
+    "correct": 2,
+    "explanation": "'import input.InputController;' imports the specific class. 'import input.*;' would import all classes in the input package. 'import input;' is invalid syntax. 'include' is not a Java keyword."
+  },
+  {
+    "id": 58,
+    "type": "mcq",
+    "category": "Software Engineering Terminology",
+    "difficulty": "hard",
+    "question": "Design Patterns are described as 'a structured approach to computer programming between the levels of a programming paradigm and a concrete algorithm.' What does this mean?",
+    "options": [
+      "Design patterns replace algorithms entirely",
+      "Design patterns are more abstract than a specific algorithm but more concrete than a general paradigm like OOP",
+      "Design patterns only apply to procedural programming",
+      "Design patterns define the hardware architecture of a system"
+    ],
+    "correct": 1,
+    "explanation": "A programming paradigm (e.g. OOP) is very abstract. A concrete algorithm (e.g. bubble sort) is very specific. Design patterns sit in between \u2014 they are reusable templates for solving class-level design problems without being a specific coded solution."
+  },
+  {
+    "id": 59,
+    "type": "mcq",
+    "category": "Engine vs Concrete Layer",
+    "difficulty": "easy",
+    "question": "Which of the following is the correct week-by-week focus as per the course schedule?",
+    "options": [
+      "Week 8: Design Patterns \u2192 Week 9: Code Organisation \u2192 Week 10: Engine Layer",
+      "Week 8: Code Organisation \u2192 Week 9: Software Design Patterns \u2192 Week 10: Problem Solving in Context",
+      "Week 8: Concrete Layer \u2192 Week 9: Code Organisation \u2192 Week 10: Design Patterns",
+      "Week 8: Quiz \u2192 Week 9: Code Organisation \u2192 Week 10: Design Patterns"
+    ],
+    "correct": 1,
+    "explanation": "The course schedule from the lecture: Week 8 = Project/Code Organisation (Engine Layer), Week 9 = Software Design Patterns (Engine Layer), Week 10 = Problem Solving in Context (Concrete Layer)."
+  },
+  {
+    "id": 60,
+    "type": "mcq",
+    "category": "Java Packages",
+    "difficulty": "medium",
+    "question": "What is the package declaration that must appear at the TOP of a class file belonging to the 'input' package?",
+    "options": [
+      "import input;",
+      "package = input;",
+      "package input;",
+      "namespace input;"
+    ],
+    "correct": 2,
+    "explanation": "'package input;' is the correct Java syntax for declaring that a class belongs to a package. It must be the first statement in the .java file (before any imports). 'namespace' is C#, and 'import' is used to USE a package, not declare one."
+  }
+]

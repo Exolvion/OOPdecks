@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "type": "flashcard",
+    "category": "Generics",
+    "difficulty": "easy",
+    "question": "What is the main purpose of Generics in Java?",
+    "answer": "Generics let you write code that works with any type while still being type-safe. They eliminate the need to store objects in a base type like 'Object' and cast them manually.",
+    "explanation": "Without generics you get raw types (not type-safe) and must manually cast retrieved objects. Generics push type-checking to compile time, catching errors earlier."
+  },
+  {
+    "id": 2,
+    "type": "flashcard",
+    "category": "Generics",
+    "difficulty": "easy",
+    "question": "What is a 'raw type' in Java and why is it considered bad practice?",
+    "answer": "A raw type is using a generic class without specifying its type parameter (e.g. List list = new ArrayList()). It is not type-safe — list.get(0) returns Object and must be manually cast, risking ClassCastException at runtime.",
+    "explanation": "Raw types lose the compile-time type guarantees that generics provide. The lecture explicitly labels this as bad practice."
+  },
+  {
+    "id": 3,
+    "type": "flashcard",
+    "category": "Generics",
+    "difficulty": "medium",
+    "question": "What does the type parameter <T> mean in 'public class Box<T>'?",
+    "answer": "T is a placeholder name for a type that will be specified when the class is instantiated. T states the class will work with 'some type called T which we'll define later'. It can be any name, but T is conventional.",
+    "explanation": "When you write Box<String> stringBox = new Box<>(\"hello\"), T becomes String throughout the class. When you write Box<Integer> intBox = new Box<>(42), T becomes Integer."
+  },
+  {
+    "id": 4,
+    "type": "flashcard",
+    "category": "Generics",
+    "difficulty": "medium",
+    "question": "How can you restrict a generic type parameter to only accept Number types?",
+    "answer": "Use bounded generics: public <T extends Number> double sum(List<T> list). The 'extends Number' constraint means only Number subtypes (Integer, Double, Float, etc.) are accepted.",
+    "explanation": "Bounded generics (<T extends SomeClass>) allow you to call methods on T that are guaranteed to exist in the bound class, such as doubleValue() on Number."
+  },
+  {
+    "id": 5,
+    "type": "flashcard",
+    "category": "Generics",
+    "difficulty": "medium",
+    "question": "Can a method be generic even if its class is not? Give an example.",
+    "answer": "Yes. A method can declare its own type parameter independently: public <T> T getFirst(List<T> list) { return list.get(0); }. The <T> before the return type makes it a generic method on a non-generic class.",
+    "explanation": "The <T> in the method signature acts independently of any class-level type parameter. This is useful for utility methods that need to work with any type."
+  },
+  {
+    "id": 6,
+    "type": "flashcard",
+    "category": "Helper Classes",
+    "difficulty": "easy",
+    "question": "What is a Pure Helper Class and what are its three key characteristics?",
+    "answer": "A utility class with only static methods. Three characteristics: (1) declared 'final' — cannot be inherited, (2) private constructor — cannot be instantiated, (3) all methods are static — called via class name without creating an object.",
+    "explanation": "Helper classes like MathHelper exist only to provide stateless utility functions. Since they have no state (no instance variables), there is no reason to ever create an instance of them."
+  },
+  {
+    "id": 7,
+    "type": "flashcard",
+    "category": "Helper Classes",
+    "difficulty": "medium",
+    "question": "Why is the constructor of a Helper Class declared private?",
+    "answer": "To prevent instantiation. If it never has a state (no instance variables), there is no reason to create an object from it. The private constructor enforces this — no outside class can call 'new MathHelper()'.",
+    "explanation": "Combined with 'final' (no inheritance), the private constructor ensures the class is used only as a static utility toolbox, never as an object."
+  },
+  {
+    "id": 8,
+    "type": "flashcard",
+    "category": "Design Patterns - Singleton",
+    "difficulty": "easy",
+    "question": "What problem does the Singleton pattern solve?",
+    "answer": "It ensures that only ONE instance of a class is ever created, and provides a global access point to that single instance. Useful when multiple instances would lead to unstable or inconsistent code.",
+    "explanation": "Examples: a game's EngineCore, a logging system, or a configuration manager — where having two separate instances would cause conflicts or duplicated state."
+  },
+  {
+    "id": 9,
+    "type": "flashcard",
+    "category": "Design Patterns - Singleton",
+    "difficulty": "medium",
+    "question": "What are the three key elements needed to implement a Singleton?",
+    "answer": "(1) A private static field that holds the single instance (private static EngineCore instance), (2) a private constructor that prevents external instantiation, (3) a public static getInstance() method that creates the instance only if null, then returns it.",
+    "explanation": "The null check in getInstance() is the lazy initialisation — the object is only created the first time it is requested, not at class load time."
+  },
+  {
+    "id": 10,
+    "type": "flashcard",
+    "category": "Design Patterns - Singleton",
+    "difficulty": "medium",
+    "question": "What is a known drawback of the Singleton pattern?",
+    "answer": "It violates the Single Responsibility Principle — the class manages both its core functionality AND its own instantiation. It can also be overused because of its simplicity. Use it only with clear justification.",
+    "explanation": "The lecture advises: 'should only use it when really necessary', 'simple patterns often get overused', and 'nothing is black and white' — context matters."
+  },
+  {
+    "id": 11,
+    "type": "flashcard",
+    "category": "Design Patterns - Factory",
+    "difficulty": "easy",
+    "question": "What is the Factory Pattern?",
+    "answer": "A creational pattern that provides a method to create objects WITHOUT specifying the exact class used. It hides the 'new' call behind a factory method. The object is delivered via an interface, enabling polymorphism.",
+    "explanation": "Instead of writing 'new Square()', the caller asks a factory: shapeFactory.getShape(\"SQUARE\"). The factory decides which concrete class to instantiate."
+  },
+  {
+    "id": 12,
+    "type": "flashcard",
+    "category": "Design Patterns - Factory",
+    "difficulty": "medium",
+    "question": "What are two SOLID principles that the Factory Pattern helps satisfy?",
+    "answer": "Single Responsibility Principle (object creation is handled in one dedicated factory class, not spread across the codebase) and Open/Closed Principle (new object types can be added to the factory without modifying existing code).",
+    "explanation": "By centralising creation in the factory, adding a new Shape type only requires adding it to ShapeFactory — existing code that calls getShape() doesn't change."
+  },
+  {
+    "id": 13,
+    "type": "flashcard",
+    "category": "Design Patterns - Factory",
+    "difficulty": "medium",
+    "question": "What is the slight limitation when using the Factory Pattern as shown in the lecture?",
+    "answer": "The created object must be stored in the parent/interface type (e.g. Shape shape1 = shapeFactory.getShape(\"SQUARE\")), not the concrete type (Square). This means you can only access methods declared in the Shape interface.",
+    "explanation": "This is actually a feature (loose coupling via polymorphism) but is noted as a limitation when you need to access concrete-type-specific methods not in the interface."
+  },
+  {
+    "id": 14,
+    "type": "flashcard",
+    "category": "Design Patterns - Abstract Factory",
+    "difficulty": "easy",
+    "question": "What is the Abstract Factory Pattern in simple terms?",
+    "answer": "A 'factory of factories'. It creates FAMILIES of related objects without specifying their concrete classes. First you choose WHICH factory (which product family), then you choose WHICH product from that family.",
+    "explanation": "In the lecture example: first choose ShapeFactory (normal shapes) or RoundedShapeFactory (rounded shapes), then ask that factory for a specific shape like RECTANGLE."
+  },
+  {
+    "id": 15,
+    "type": "flashcard",
+    "category": "Design Patterns - Abstract Factory",
+    "difficulty": "medium",
+    "question": "What is the role of 'FactoryProducer' in the Abstract Factory example?",
+    "answer": "FactoryProducer decides which concrete factory (ShapeFactory or RoundedShapeFactory) to return based on a parameter. It returns an AbstractFactory reference, hiding which specific factory was created.",
+    "explanation": "public static AbstractFactory getFactory(boolean rounded) — if rounded is true, returns RoundedShapeFactory; otherwise returns ShapeFactory. The caller only works with the AbstractFactory interface."
+  },
+  {
+    "id": 16,
+    "type": "flashcard",
+    "category": "Design Patterns - Abstract Factory",
+    "difficulty": "medium",
+    "question": "What are three benefits of the Abstract Factory Pattern?",
+    "answer": "(1) Ensures products from the same family are compatible with each other, (2) centralises product creation (supports Single Responsibility Principle), (3) new product families can be introduced without breaking existing code.",
+    "explanation": "In a game engine context: you could have a ModernUIFactory and a RetroUIFactory, ensuring all UI elements from one family are visually consistent."
+  },
+  {
+    "id": 17,
+    "type": "flashcard",
+    "category": "Design Patterns - Factory Registry",
+    "difficulty": "hard",
+    "question": "What is a Factory Registry and how does it improve on basic Factory Pattern?",
+    "answer": "A Factory Registry maps class types to their factories (e.g. using a HashMap). You register factories (entityManager.registerFactory(Player.class, new PlayerFactory())), then create entities by type (entityManager.createEntity(Player.class)). This returns the correct concrete type without casting.",
+    "explanation": "Unlike a basic factory with if/else chains, a registry-based factory is extensible — new types are registered at runtime without modifying the factory class itself. Combined with generics, no casting is required."
+  },
+  {
+    "id": 18,
+    "type": "flashcard",
+    "category": "Design Patterns - GoF",
+    "difficulty": "easy",
+    "question": "What does 'GoF' stand for and what is its significance in software design?",
+    "answer": "GoF = 'Gang of Four'. It refers to the four co-authors (Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides) of the 1994 book 'Design Patterns: Elements of Reusable Object-Oriented Software', which catalogued the 23 most common OO design patterns.",
+    "explanation": "The GoF book is considered the foundational reference for object-oriented design patterns. All 23 patterns discussed in this module originate from this book."
+  },
+  {
+    "id": 19,
+    "type": "flashcard",
+    "category": "Components and Layers",
+    "difficulty": "easy",
+    "question": "What are the two software layers discussed in this module?",
+    "answer": "The Abstract Engine Layer (reusable, general-purpose, not tied to a specific game) and the Application Layer (the concrete game or simulation built on top of the engine).",
+    "explanation": "Layers are implemented as packages with sub-packages. The engine layer is everything built abstractly; the application layer contains game-specific classes like Player, Orc, Bullet."
+  },
+  {
+    "id": 20,
+    "type": "flashcard",
+    "category": "Components and Layers",
+    "difficulty": "medium",
+    "question": "In the lecture's diagram, where do classes like 'Player', 'Orc', and 'Bullet' sit in the layer hierarchy?",
+    "answer": "In the Game (Application) Layer. They are concrete classes that inherit from game-specific abstract classes (GameX Collidable / GameX NonCollidable), which in turn inherit from engine-layer abstractions (Collidable / NonCollidable / Entity).",
+    "explanation": "The flow is: Entity (Engine) → Collidable (Engine) → GameX Collidable (Game) → Player/Orc (Game). The dashed line separates the engine layer from the game layer."
+  },
+  {
+    "id": 21,
+    "type": "flashcard",
+    "category": "Components and Layers",
+    "difficulty": "medium",
+    "question": "What is the Layered Architecture Pattern and how does it apply to game engine design?",
+    "answer": "A common software architectural approach where the system is divided into horizontal layers based on functionality. Each layer can contain multiple components. In game engines: Game Specific Subsystems → Gameplay Foundations → Rendering Engine → Resource Management → Platform Independence → OS/Hardware.",
+    "explanation": "The lecture uses this as context but simplifies to just two layers for the module: Engine Layer and Application (Game) Layer."
+  },
+  {
+    "id": 22,
+    "type": "flashcard",
+    "category": "Object Management",
+    "difficulty": "easy",
+    "question": "What is an Entity Manager (Manager Class) and what is its core responsibility?",
+    "answer": "A manager class oversees and manages a list of common objects (has-a list). It invokes updates for those objects and asks them (polymorphically) to execute methods when required. It does NOT do the work for the objects — each object does its own work.",
+    "explanation": "Think of a manager as an orchestrator — it tells entities when to update, but each entity handles its own logic (an Orc updates its AI, a Player updates its input response)."
+  },
+  {
+    "id": 23,
+    "type": "flashcard",
+    "category": "Object Management",
+    "difficulty": "medium",
+    "question": "What is the iCollidable interface and why is it useful for entity management?",
+    "answer": "iCollidable is an interface declaring collision-related methods: collidesWith(iCollidable other) and reactToCollision(). Any collidable entity can be stored in a List<iCollidable>. The manager can then call these methods on all entities polymorphically without knowing their concrete types.",
+    "explanation": "This enables writing one collision detection loop that works for all entity types. Each entity overrides reactToCollision() with its own logic (Player takes damage, Bullet deletes itself)."
+  },
+  {
+    "id": 24,
+    "type": "flashcard",
+    "category": "Object Management",
+    "difficulty": "medium",
+    "question": "Why is polymorphism essential for entity management in games?",
+    "answer": "A game may have thousands of bullets, hundreds of enemies, and multiple players — all requiring collision checks. By storing all entities in a List<iCollidable>, a single loop can check all pairs and call reactToCollision() on each. Each entity handles its reaction differently without the manager needing to know the concrete type.",
+    "explanation": "Without polymorphism you would need separate loops for each entity type, and adding a new entity type would break existing manager code."
+  },
+  {
+    "id": 25,
+    "type": "flashcard",
+    "category": "Object Management",
+    "difficulty": "hard",
+    "question": "When are objects typically assigned to managers, and can this change?",
+    "answer": "Objects are usually assigned to managers on creation. However, they can be assigned, tracked, and removed dynamically — for example, bullets are spawned during gameplay and removed when they go off-screen or hit something.",
+    "explanation": "Dynamic management is crucial for games with large numbers of objects that are created and destroyed frequently (like bullets in a shoot-em-up)."
+  },
+  {
+    "id": 26,
+    "type": "flashcard",
+    "category": "Object Management",
+    "difficulty": "medium",
+    "question": "What does 'code to abstraction / code to interfaces' mean in the context of entity management?",
+    "answer": "Rather than coding to specific concrete types (Player, Orc), write code that works with the abstract type (Collidable) or interface (iCollidable). This allows the manager to work uniformly with any entity that implements the interface, enabling future extension without changing the manager.",
+    "explanation": "This is the Liskov Substitution Principle in action: any class implementing iCollidable can be treated as an iCollidable, and the manager doesn't need to know the difference."
+  },
+  {
+    "id": 27,
+    "type": "flashcard",
+    "category": "Design Patterns - Singleton",
+    "difficulty": "hard",
+    "question": "Trace through the Singleton getInstance() logic. What happens on the FIRST call and on SUBSEQUENT calls?",
+    "answer": "FIRST call: instance == null is true, so 'instance = new EngineCore()' is executed, creating the object, then the new instance is returned. SUBSEQUENT calls: instance != null, so the if block is skipped and the existing instance is returned directly.",
+    "explanation": "This is called lazy initialisation — the object is not created until it is first needed. The static field retains the instance between calls because it belongs to the class, not to any instance."
+  },
+  {
+    "id": 28,
+    "type": "flashcard",
+    "category": "Design Patterns - Factory",
+    "difficulty": "hard",
+    "question": "How does the Factory Pattern benefit a game's main class when creating many entity types (Player, Enemy, Bullet, Wall, Tree)?",
+    "answer": "Without factory: the game class directly instantiates each type ('new Player()', 'new Enemy()', etc.) creating tight coupling. With factory: the game class only associates with the factory, delegating all creation to it. Adding a new entity type only requires updating the factory, not the game class.",
+    "explanation": "This reduces the game class's responsibilities (Single Responsibility Principle) and means the game class is closed for modification but open for extension via the factory (Open/Closed Principle)."
+  },
+  {
+    "id": 29,
+    "type": "flashcard",
+    "category": "Components and Layers",
+    "difficulty": "hard",
+    "question": "What is the difference between Collidable (Abstract), GameX Collidable (Abstract), and Orc (Concrete) in the layered entity hierarchy?",
+    "answer": "Collidable (Engine Layer): generic, stores everything any entity in ANY game could have, with abstract collision methods. GameX Collidable (Game Layer): adds anything common to ALL collidable entities in THIS specific game. Orc (Concrete): the specific game entity with its own unique logic, tied to the game's context.",
+    "explanation": "This two-level abstraction allows the engine to be reused across different games while still allowing game-specific shared behaviour to be factored out from individual entity classes."
+  },
+  {
+    "id": 30,
+    "type": "flashcard",
+    "category": "Design Patterns - Abstract Factory",
+    "difficulty": "hard",
+    "question": "What is the key structural difference between Factory Pattern and Abstract Factory Pattern?",
+    "answer": "Factory Pattern: one factory creates objects from ONE product family (e.g. ShapeFactory makes shapes). Abstract Factory Pattern: multiple concrete factories (ShapeFactory, RoundedShapeFactory) all implement a shared AbstractFactory interface; a FactoryProducer selects WHICH factory to use. You select the family THEN the product.",
+    "explanation": "Factory hides the construction of a SINGLE object type. Abstract Factory hides the construction of a FAMILY of related objects. Abstract Factory is 'a factory of factories'."
+  }
+]

@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "type": "flashcard",
+    "category": "OOP Recap",
+    "difficulty": "easy",
+    "question": "What does 'Inheritance' represent in OOP relationship terms?",
+    "answer": "An 'is-a' relationship. A subclass IS A type of its superclass (e.g. Dog is-a Animal).",
+    "explanation": "Inheritance models a hierarchical relationship where the child class IS a specialised version of the parent."
+  },
+  {
+    "id": 2,
+    "type": "flashcard",
+    "category": "OOP Recap",
+    "difficulty": "easy",
+    "question": "What does 'Association' represent in OOP relationship terms?",
+    "answer": "A 'using' relationship. Class A knows about Class B and can use it, but does NOT store it as a class variable.",
+    "explanation": "Association is the loosest relationship \u2014 A uses B (e.g. as a method parameter) without owning or containing it."
+  },
+  {
+    "id": 3,
+    "type": "flashcard",
+    "category": "OOP Recap",
+    "difficulty": "medium",
+    "question": "What is the difference between Aggregation and Composition?",
+    "answer": "Both are 'has-a' relationships. Aggregation: Class B exists independently of Class A (A doesn't own B's lifecycle). Composition: Class B is created by and only exists within Class A (A owns B's lifecycle \u2014 'death relationship').",
+    "explanation": "The key distinction is lifecycle ownership. In composition, destroying A also destroys B. In aggregation, B can survive without A."
+  },
+  {
+    "id": 4,
+    "type": "flashcard",
+    "category": "OOP Recap",
+    "difficulty": "medium",
+    "question": "In the Robot example from the lecture, what OOP relationship does 'Robot' have with 'Brain'?",
+    "answer": "Composition \u2014 Robot creates Brain internally (private Brain myBrain = new Brain()), so Brain only exists as part of Robot.",
+    "explanation": "Because Brain is instantiated inside Robot using 'new', Robot owns Brain's lifecycle. If Robot is destroyed, so is its Brain."
+  },
+  {
+    "id": 5,
+    "type": "flashcard",
+    "category": "OOP Recap",
+    "difficulty": "medium",
+    "question": "In the Robot example, what OOP relationship does 'Robot' have with 'Weapon'?",
+    "answer": "Aggregation \u2014 Weapon is passed into Robot via PickUpWeapon(Weapon gun), stored as a reference. Weapon exists outside Robot.",
+    "explanation": "Because the Weapon is sent to Robot from outside (not created by it), Robot holds a reference but does not own the Weapon's lifecycle."
+  },
+  {
+    "id": 6,
+    "type": "flashcard",
+    "category": "OOP Recap",
+    "difficulty": "easy",
+    "question": "In the Robot example, what OOP relationship does 'RobotController' have with 'Robot'?",
+    "answer": "Association \u2014 RobotController uses Robot as a method parameter (update(Robot robot)) but does not store it as a class variable.",
+    "explanation": "RobotController knows about Robot and calls its methods, but doesn't contain or own it \u2014 a pure 'using' relationship."
+  },
+  {
+    "id": 7,
+    "type": "flashcard",
+    "category": "Engine vs Concrete Layer",
+    "difficulty": "easy",
+    "question": "What is the 'Engine Layer' in the context of this module?",
+    "answer": "The general, reusable core system built with OOP. It provides all components needed to build a simulation/game and is not tied to one specific game.",
+    "explanation": "The engine is like a game engine (Unity, Unreal) \u2014 a robust, reusable foundation that can power multiple applications."
+  },
+  {
+    "id": 8,
+    "type": "flashcard",
+    "category": "Engine vs Concrete Layer",
+    "difficulty": "easy",
+    "question": "What is the 'Concrete Layer' in the context of this module?",
+    "answer": "The specific simulation or game built on top of the engine, containing game-specific logic, entities, and interactions.",
+    "explanation": "The concrete layer uses the engine via association, inheritance, and composition to implement a specific game or simulation."
+  },
+  {
+    "id": 9,
+    "type": "flashcard",
+    "category": "Engine vs Concrete Layer",
+    "difficulty": "medium",
+    "question": "Can an Engine exist without a Game/Simulation? Can a Game/Simulation exist without an Engine?",
+    "answer": "Yes, an Engine can exist with little to no game context. No, a Game/Simulation cannot exist without the Engine.",
+    "explanation": "The engine is self-sufficient as a reusable core. The game depends on the engine's infrastructure to run."
+  },
+  {
+    "id": 10,
+    "type": "flashcard",
+    "category": "Engine vs Concrete Layer",
+    "difficulty": "medium",
+    "question": "What does the 'KISS principle' mean in the context of designing your game/simulation?",
+    "answer": "Keep It Simple, Stupid \u2014 start with a simple game/simulation idea and avoid over-engineering the concrete layer.",
+    "explanation": "The lecture emphasises starting simple to avoid scope creep, especially when the engine is still evolving."
+  },
+  {
+    "id": 11,
+    "type": "flashcard",
+    "category": "Software Engineering Terminology",
+    "difficulty": "easy",
+    "question": "What is a Software Component?",
+    "answer": "A software unit with a well-defined interface and explicitly specified dependencies. It can range from a block of reusable code to an entire application.",
+    "explanation": "Components are the formalised 'smaller parts' that make up a larger system, each with clear boundaries and interfaces."
+  },
+  {
+    "id": 12,
+    "type": "flashcard",
+    "category": "Software Engineering Terminology",
+    "difficulty": "easy",
+    "question": "What is Software Architecture?",
+    "answer": "The organisation of a system \u2014 includes all components, how they interact, the environment they operate in, and the design principles used. It acts as a blueprint for the system.",
+    "explanation": "Architecture is the high-level structure of a system. It is often evolutionary, changing as the team learns more."
+  },
+  {
+    "id": 13,
+    "type": "flashcard",
+    "category": "Software Engineering Terminology",
+    "difficulty": "medium",
+    "question": "What are 'Patterns' in software development?",
+    "answer": "Reusable solutions to commonly occurring problems. They are tried-and-tested approaches that tend to work best for given scenarios.",
+    "explanation": "Patterns encode collective wisdom. Rather than solving a problem from scratch, developers apply known patterns."
+  },
+  {
+    "id": 14,
+    "type": "flashcard",
+    "category": "Software Engineering Terminology",
+    "difficulty": "medium",
+    "question": "What is an Architectural Pattern?",
+    "answer": "A general, reusable solution to a commonly occurring problem in software architecture \u2014 typically referring to the functional grouping of components for a specific purpose (e.g. Layered, MVC, Client-Server).",
+    "explanation": "Architectural patterns operate at the system/macro level, defining how major components are organised and interact."
+  },
+  {
+    "id": 15,
+    "type": "flashcard",
+    "category": "Software Engineering Terminology",
+    "difficulty": "medium",
+    "question": "What is a Design Pattern, and how does it differ from an Architectural Pattern?",
+    "answer": "A Design Pattern is a general, reusable solution to a common problem at the code/class level (within components). Architectural Patterns operate at the system level; Design Patterns operate within components.",
+    "explanation": "Design patterns are micro-level (class relationships), while architectural patterns are macro-level (system structure)."
+  },
+  {
+    "id": 16,
+    "type": "flashcard",
+    "category": "Software Engineering Terminology",
+    "difficulty": "hard",
+    "question": "Name the three types of Design Patterns and give one example of each.",
+    "answer": "Creational (e.g. Singleton, Factory), Structural (e.g. Adapter, Facade), Behavioural (e.g. Observer, Strategy).",
+    "explanation": "Creational = how objects are created. Structural = how objects/classes are composed. Behavioural = how objects communicate."
+  },
+  {
+    "id": 17,
+    "type": "flashcard",
+    "category": "Software Engineering Terminology",
+    "difficulty": "hard",
+    "question": "List the 10 most common Architectural Patterns mentioned in the lecture.",
+    "answer": "Layered, Client-server, Master-slave, Pipe-filter, Broker, Peer-to-peer, Event-bus, Model-View-Controller (MVC), Blackboard, Interpreter.",
+    "explanation": "These patterns address system-level concerns like communication, scalability, and separation of concerns."
+  },
+  {
+    "id": 18,
+    "type": "flashcard",
+    "category": "Java Packages",
+    "difficulty": "easy",
+    "question": "What is a Java Package?",
+    "answer": "A grouping of similar types of classes, interfaces, and sub-packages. It is analogous to an organised folder structure.",
+    "explanation": "Packages help avoid name conflicts, improve maintainability, and logically group related code \u2014 similar to software components."
+  },
+  {
+    "id": 19,
+    "type": "flashcard",
+    "category": "Java Packages",
+    "difficulty": "easy",
+    "question": "What are the two ways to import a package in Java?",
+    "answer": "import package.*;  (imports all classes)\nimport package.ClassName;  (imports a specific class)",
+    "explanation": "The wildcard (*) imports everything from the package; the specific import is preferred for clarity."
+  },
+  {
+    "id": 20,
+    "type": "flashcard",
+    "category": "Java Packages",
+    "difficulty": "medium",
+    "question": "What does the 'protected' access modifier mean in the context of packages?",
+    "answer": "Protected members can be accessed by subclasses in OTHER packages, AND by any class WITHIN the same package as the class that declared the protected member.",
+    "explanation": "This makes 'protected' more permissive than 'private' (class-only) but more restrictive than 'public' (everywhere)."
+  },
+  {
+    "id": 21,
+    "type": "flashcard",
+    "category": "Java Packages",
+    "difficulty": "medium",
+    "question": "In the Brain/ZombieBrain example, why can ZombieBrain access Brain's protected field 'IsZombie'?",
+    "answer": "Because ZombieBrain is in the SAME package as Brain (both in package Controllers), any class in the same package can access protected members.",
+    "explanation": "Protected access is package-wide + subclass. ZombieBrain qualifies via the package rule, not inheritance."
+  },
+  {
+    "id": 22,
+    "type": "flashcard",
+    "category": "Java Packages",
+    "difficulty": "hard",
+    "question": "In the Brain/ZombieBrain example, why does 'myBrain.IsZombie = true' inside Entity give a compile error?",
+    "answer": "Entity is in a DIFFERENT package (com.mygdx.game) and does NOT inherit from Brain, so it cannot access Brain's protected field directly.",
+    "explanation": "Protected access from outside the package requires inheritance. Entity has no inheritance relationship with Brain."
+  },
+  {
+    "id": 23,
+    "type": "flashcard",
+    "category": "Java Packages",
+    "difficulty": "medium",
+    "question": "What is the general access philosophy the lecture recommends for class members?",
+    "answer": "Everything should be private unless it REALLY needs to be public. Access is used as control \u2014 deciding if, how, and where access to class internals happens.",
+    "explanation": "This enforces encapsulation. Restricting access means bugs and misuse are caught at compile time rather than runtime."
+  },
+  {
+    "id": 24,
+    "type": "flashcard",
+    "category": "Java Packages",
+    "difficulty": "easy",
+    "question": "How should packages be named/structured for a game engine?",
+    "answer": "Based on core engine functionalities. For example, all physics-related classes go into a 'physics' package. Related classes, sub-packages, and sub-classes are grouped together.",
+    "explanation": "This mirrors real engines like Unity (Physics, Audio, Graphics as separate subsystems)."
+  },
+  {
+    "id": 25,
+    "type": "flashcard",
+    "category": "Engine vs Concrete Layer",
+    "difficulty": "hard",
+    "question": "Give 5 examples of specific game components that belong to the Concrete Layer, not the Engine Layer.",
+    "answer": "1) Number of players (entities/inputs), 2) Specific enemy/object types (entities + AI), 3) Game interactions like jumping or button pressing, 4) Movement types (flying, swimming, jumping), 5) Game logic like scoring and collision reactions.",
+    "explanation": "These are game-specific and not reusable across different games \u2014 they depend on the engine but aren't part of it."
+  },
+  {
+    "id": 26,
+    "type": "flashcard",
+    "category": "Engine vs Concrete Layer",
+    "difficulty": "medium",
+    "question": "What does 'catch-some' vs 'catch-most' mean in the context of a game engine?",
+    "answer": "Engines start as 'catch-some' \u2014 handling a limited set of use cases. Over time they evolve to 'catch-most' \u2014 handling a broader range of scenarios. They are never a total 'catch-all'.",
+    "explanation": "The lecture uses Unreal Engine as an example \u2014 designed for 1st/3rd person games, it has poor replication for fast-moving non-character objects."
+  },
+  {
+    "id": 27,
+    "type": "flashcard",
+    "category": "Software Engineering Terminology",
+    "difficulty": "hard",
+    "question": "What does 'Engine Tools Level' refer to, and what is the expected level for this module?",
+    "answer": "Engine Tools Level is where core engine code is hidden and scripting/tools abstract functionality for users. This module expects code-level interaction \u2014 connecting to the engine via association, inheritance, and composition in code.",
+    "explanation": "Commercial engines like Unity provide a full GUI editor (tools level). This module operates at the scripting/code level below that."
+  },
+  {
+    "id": 28,
+    "type": "flashcard",
+    "category": "OOP Recap",
+    "difficulty": "easy",
+    "question": "What is Encapsulation in OOP?",
+    "answer": "Bundling data (fields) and methods that operate on that data within a class, and controlling access to them using access modifiers (private, protected, public).",
+    "explanation": "Encapsulation hides internal state and requires all interaction to go through well-defined interfaces (getters/setters or public methods)."
+  },
+  {
+    "id": 29,
+    "type": "flashcard",
+    "category": "OOP Recap",
+    "difficulty": "medium",
+    "question": "What is Polymorphism in OOP?",
+    "answer": "The ability of different classes to be treated as instances of the same superclass, each responding to the same method call in their own specific way.",
+    "explanation": "Polymorphism allows writing generic code that works with objects of many types, reducing coupling and increasing flexibility."
+  },
+  {
+    "id": 30,
+    "type": "flashcard",
+    "category": "Software Engineering Terminology",
+    "difficulty": "hard",
+    "question": "Why is Software Architecture described as an 'evolutionary process'?",
+    "answer": "Because architecture evolves as the team learns more \u2014 it is not uncommon for the structure of a system to change based on new knowledge, feedback, or requirements discovered during development.",
+    "explanation": "The lecture notes this explicitly: 'Not uncommon for architecture to evolve based on learning.' This is why the engine is refined before the concrete layer is built."
+  }
+]

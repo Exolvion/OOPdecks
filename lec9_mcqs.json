@@ -1,0 +1,452 @@
+[
+  {
+    "id": 31,
+    "type": "mcq",
+    "category": "Generics",
+    "difficulty": "easy",
+    "question": "What is the main advantage of using generics over raw types in Java?",
+    "options": [
+      "Generics run faster than raw types at runtime",
+      "Generics provide compile-time type safety, eliminating the need for manual casting",
+      "Generics allow a class to have multiple constructors",
+      "Generics prevent all runtime exceptions"
+    ],
+    "correct": 1,
+    "explanation": "Generics move type checking to compile time. With raw types, list.get(0) returns Object and requires a manual cast like (String) — which can fail at runtime with ClassCastException. With List<String>, get(0) returns String directly, enforced by the compiler."
+  },
+  {
+    "id": 32,
+    "type": "mcq",
+    "category": "Generics",
+    "difficulty": "easy",
+    "question": "What does List<String> list = new ArrayList<>() achieve compared to List list = new ArrayList()?",
+    "options": [
+      "They are identical — generics are only a naming convention",
+      "The generic version is type-safe; the raw type version requires manual casting and is not type-safe",
+      "The generic version uses more memory",
+      "The raw type version is faster to compile"
+    ],
+    "correct": 1,
+    "explanation": "List<String> constrains the list to Strings at compile time. list.get(0) returns String directly — no cast. The raw List version returns Object, requiring (String) list.get(0) which can throw ClassCastException if the wrong type was stored."
+  },
+  {
+    "id": 33,
+    "type": "mcq",
+    "category": "Generics",
+    "difficulty": "medium",
+    "question": "Given: public class Box<T> { private T value; public T getValue() { return value; } }\nWhat does Box<Integer> intBox = new Box<>(42) do?",
+    "options": [
+      "Creates a Box that can hold any type, and 42 is stored as Object",
+      "Sets T to Integer for this instance; getValue() will return Integer without casting",
+      "Causes a compile error because 42 is a primitive, not an object",
+      "Creates a Box of type T which must be cast to Integer before use"
+    ],
+    "correct": 1,
+    "explanation": "When you write Box<Integer>, T is resolved to Integer throughout that instance. Java auto-boxes the primitive 42 to Integer. getValue() returns Integer — no casting required, fully type-safe."
+  },
+  {
+    "id": 34,
+    "type": "mcq",
+    "category": "Generics",
+    "difficulty": "medium",
+    "question": "What does '<T extends Number>' mean in a method signature?",
+    "options": [
+      "T must be exactly the Number class, nothing else",
+      "T can be any type that is a subclass of Number (e.g. Integer, Double, Float)",
+      "T can be any type, but it will be cast to Number at runtime",
+      "The method can only be called with T set to the Number class"
+    ],
+    "correct": 1,
+    "explanation": "Bounded generics restrict T to Number and its subclasses. This allows calling Number methods (like doubleValue()) on T safely. Types like Integer, Double, and Float all extend Number and are valid."
+  },
+  {
+    "id": 35,
+    "type": "mcq",
+    "category": "Helper Classes",
+    "difficulty": "easy",
+    "question": "Why is the keyword 'final' used on a Helper Class like 'public final class MathHelper'?",
+    "options": [
+      "To make all its methods run faster",
+      "To prevent the class from being instantiated",
+      "To prevent the class from being inherited (subclassed)",
+      "To make all its fields constants"
+    ],
+    "correct": 2,
+    "explanation": "'final' on a class prevents inheritance — no other class can extend MathHelper. This is appropriate because helper classes are stateless utility toolboxes with no reason to be subclassed. To prevent instantiation, the private constructor is used."
+  },
+  {
+    "id": 36,
+    "type": "mcq",
+    "category": "Helper Classes",
+    "difficulty": "medium",
+    "question": "How is a static method in a Helper Class called, assuming MathHelper is imported?",
+    "options": [
+      "new MathHelper().add(5, 10)",
+      "MathHelper helper = new MathHelper(); helper.add(5, 10);",
+      "MathHelper.add(5, 10)",
+      "super.MathHelper.add(5, 10)"
+    ],
+    "correct": 2,
+    "explanation": "Static methods are called via the class name directly, without creating an instance: MathHelper.add(5, 10). This is possible because static methods belong to the class, not to any object instance."
+  },
+  {
+    "id": 37,
+    "type": "mcq",
+    "category": "Design Patterns - GoF",
+    "difficulty": "easy",
+    "question": "What does 'GoF' stand for in the context of design patterns?",
+    "options": [
+      "Group of Functions",
+      "Gang of Four — the four authors of 'Design Patterns: Elements of Reusable Object-Oriented Software' (1994)",
+      "General Object Framework",
+      "Generic Object Foundation"
+    ],
+    "correct": 1,
+    "explanation": "GoF = Gang of Four: Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides. Their 1994 book catalogued 23 foundational OO design patterns and remains the standard reference."
+  },
+  {
+    "id": 38,
+    "type": "mcq",
+    "category": "Design Patterns - Singleton",
+    "difficulty": "easy",
+    "question": "What is the core guarantee of the Singleton design pattern?",
+    "options": [
+      "Only one method can be called at a time on the object",
+      "Only one instance of the class is ever created, with a global access point to it",
+      "The class can only have one field",
+      "The class can only be used in one package"
+    ],
+    "correct": 1,
+    "explanation": "Singleton ensures exactly one instance exists globally. It uses a private constructor (preventing external instantiation) and a static getInstance() method (the global access point) to enforce this."
+  },
+  {
+    "id": 39,
+    "type": "mcq",
+    "category": "Design Patterns - Singleton",
+    "difficulty": "medium",
+    "question": "Review this Singleton code:\nprivate static EngineCore instance;\nprivate EngineCore() {}\npublic static EngineCore getInstance() {\n  if (instance == null) { instance = new EngineCore(); }\n  return instance;\n}\nWhat happens if getInstance() is called 3 times?",
+    "options": [
+      "Three separate EngineCore objects are created",
+      "The first call creates the object; the 2nd and 3rd calls return the same existing object",
+      "A compile error occurs because getInstance() is static",
+      "The constructor is called 3 times but only 1 object is stored"
+    ],
+    "correct": 1,
+    "explanation": "First call: instance == null, so 'instance = new EngineCore()' runs, creating the object. Second and third calls: instance != null, so the if block is skipped and the existing instance is returned. The constructor is called exactly once."
+  },
+  {
+    "id": 40,
+    "type": "mcq",
+    "category": "Design Patterns - Singleton",
+    "difficulty": "medium",
+    "question": "Which principle does the Singleton pattern violate?",
+    "options": [
+      "Open/Closed Principle",
+      "Liskov Substitution Principle",
+      "Single Responsibility Principle",
+      "Interface Segregation Principle"
+    ],
+    "correct": 2,
+    "explanation": "The Singleton class takes on TWO responsibilities: its core functionality AND managing its own instantiation. The Single Responsibility Principle states a class should have only one reason to change."
+  },
+  {
+    "id": 41,
+    "type": "mcq",
+    "category": "Design Patterns - Factory",
+    "difficulty": "easy",
+    "question": "What does the Factory Pattern hide from the caller?",
+    "options": [
+      "The method names of the created object",
+      "The 'new' call — the exact concrete class used to create the object",
+      "The package location of the created class",
+      "The return type of the created object"
+    ],
+    "correct": 1,
+    "explanation": "The Factory Pattern hides the 'new SpecificClass()' call. The caller asks the factory for an object by type ('SQUARE'), and the factory decides which concrete class to instantiate. The caller only knows the interface (Shape)."
+  },
+  {
+    "id": 42,
+    "type": "mcq",
+    "category": "Design Patterns - Factory",
+    "difficulty": "medium",
+    "question": "In the ShapeFactory example, what type is 'shape1' stored as?\nShape shape1 = shapeFactory.getShape(\"SQUARE\");",
+    "options": [
+      "Square — the exact concrete type",
+      "ShapeFactory — the factory type",
+      "Shape — the interface type",
+      "Object — the base Java type"
+    ],
+    "correct": 2,
+    "explanation": "getShape() returns type Shape (the interface). Even though the actual object is a Square, it is stored as Shape. This is the 'slight limitation' noted in the lecture — only Shape interface methods are accessible directly."
+  },
+  {
+    "id": 43,
+    "type": "mcq",
+    "category": "Design Patterns - Factory",
+    "difficulty": "medium",
+    "question": "How does using a Factory Pattern in a game class reduce coupling when creating Player, Enemy, Bullet, Wall, and Tree?",
+    "options": [
+      "The game class imports fewer packages",
+      "The game class only associates with the factory, removing direct 'new' calls for each entity type — adding new entities only changes the factory, not the game class",
+      "The game class becomes abstract",
+      "The game class no longer needs to import entity classes"
+    ],
+    "correct": 1,
+    "explanation": "Without a factory, the game class directly instantiates every entity — creating tight coupling. With a factory, the game class only knows about the factory. New entity types are handled by adding them to the factory, following the Open/Closed Principle."
+  },
+  {
+    "id": 44,
+    "type": "mcq",
+    "category": "Design Patterns - Abstract Factory",
+    "difficulty": "easy",
+    "question": "How is Abstract Factory different from Factory Pattern?",
+    "options": [
+      "Abstract Factory is used for creating a single object; Factory is for creating multiple objects",
+      "Abstract Factory creates families of related objects across multiple factories; Factory creates objects from one product type",
+      "Abstract Factory uses inheritance; Factory uses composition",
+      "They are the same — 'abstract factory' just means the factory is in an abstract class"
+    ],
+    "correct": 1,
+    "explanation": "Factory Pattern hides construction of ONE product family (e.g. all shapes from ShapeFactory). Abstract Factory is a 'factory of factories' — it groups multiple factories with a common theme (ShapeFactory + RoundedShapeFactory under AbstractFactory)."
+  },
+  {
+    "id": 45,
+    "type": "mcq",
+    "category": "Design Patterns - Abstract Factory",
+    "difficulty": "medium",
+    "question": "In the Abstract Factory example:\nAbstractFactory shapeFactory = FactoryProducer.getFactory(false);\nShape shape1 = shapeFactory.getShape(\"RECTANGLE\");\nWhat type of shape does this produce?",
+    "options": [
+      "RoundedRectangle — because false means rounded is disabled",
+      "Rectangle — because getFactory(false) returns ShapeFactory (non-rounded), which creates a normal Rectangle",
+      "Square — because false is the default",
+      "An error — getShape needs the boolean parameter too"
+    ],
+    "correct": 1,
+    "explanation": "getFactory(false) returns a ShapeFactory (not rounded). shapeFactory.getShape(\"RECTANGLE\") on ShapeFactory creates a normal Rectangle. getFactory(true) would return RoundedShapeFactory, producing a RoundedRectangle."
+  },
+  {
+    "id": 46,
+    "type": "mcq",
+    "category": "Design Patterns - Abstract Factory",
+    "difficulty": "hard",
+    "question": "In the Abstract Factory architecture, what is the relationship between ShapeFactory, RoundedShapeFactory, and AbstractFactory?",
+    "options": [
+      "ShapeFactory and RoundedShapeFactory ARE AbstractFactory (they extend it)",
+      "AbstractFactory extends ShapeFactory",
+      "They are unrelated classes connected only through FactoryProducer",
+      "ShapeFactory and RoundedShapeFactory compose AbstractFactory"
+    ],
+    "correct": 0,
+    "explanation": "Both ShapeFactory and RoundedShapeFactory extend AbstractFactory. FactoryProducer returns either one as an AbstractFactory reference. The diagram shows 'extends' arrows from both concrete factories to AbstractFactory."
+  },
+  {
+    "id": 47,
+    "type": "mcq",
+    "category": "Design Patterns - Factory Registry",
+    "difficulty": "hard",
+    "question": "In the Factory Registry pattern, what does entityManager.registerFactory(Player.class, new PlayerFactory()) do?",
+    "options": [
+      "It creates a Player object immediately",
+      "It maps the Player class type to its PlayerFactory, stored in the entity manager (e.g. in a HashMap) for later use",
+      "It deletes the PlayerFactory after use",
+      "It makes PlayerFactory the default factory for all entity types"
+    ],
+    "correct": 1,
+    "explanation": "registerFactory stores the mapping from Player.class → PlayerFactory in a registry (typically a HashMap<Class, Factory>). When createEntity(Player.class) is later called, the manager looks up the registered factory and uses it to create the object."
+  },
+  {
+    "id": 48,
+    "type": "mcq",
+    "category": "Components and Layers",
+    "difficulty": "easy",
+    "question": "In this module's two-layer architecture, which layer contains 'Player', 'Orc', and 'Bullet'?",
+    "options": [
+      "The Abstract Engine Layer",
+      "The Application (Game) Layer",
+      "The Platform Independence Layer",
+      "The Resource Management Layer"
+    ],
+    "correct": 1,
+    "explanation": "Player, Orc, and Bullet are concrete, game-specific entities — they belong in the Application (Game) Layer. The Engine Layer contains abstract base classes like Entity, Collidable, and NonCollidable that are game-agnostic."
+  },
+  {
+    "id": 49,
+    "type": "mcq",
+    "category": "Components and Layers",
+    "difficulty": "medium",
+    "question": "Which statement correctly describes the relationship between layers and components?",
+    "options": [
+      "A component can span multiple layers",
+      "A layer contains exactly one component",
+      "A layer can have many components; components are grouped based on shared functionality",
+      "Components and layers are the same concept"
+    ],
+    "correct": 2,
+    "explanation": "The lecture states: 'A layer can have many components' and 'Components are usually grouped based on shared functionality (like entities!)'. A layer is a horizontal architectural grouping; components are functional units within a layer."
+  },
+  {
+    "id": 50,
+    "type": "mcq",
+    "category": "Components and Layers",
+    "difficulty": "medium",
+    "question": "In the entity hierarchy diagram, what does the dashed line between the two layers represent?",
+    "options": [
+      "An inheritance relationship",
+      "A composition relationship",
+      "The boundary separating the Game Engine Layer (above) from the Game Layer (below)",
+      "A network connection between components"
+    ],
+    "correct": 2,
+    "explanation": "The dashed line visually separates the Abstract Engine Layer (Entity, Collidable, NonCollidable) from the Application/Game Layer (GameX Collidable, GameX NonCollidable, Player, Orc, Bullet, Moon, Tree)."
+  },
+  {
+    "id": 51,
+    "type": "mcq",
+    "category": "Object Management",
+    "difficulty": "easy",
+    "question": "What is the primary role of a Manager Class in entity management?",
+    "options": [
+      "To do all the work for each entity, including movement and collision logic",
+      "To oversee a list of objects, invoke their updates, and ask them to execute methods — without doing the work itself",
+      "To create all entity objects using 'new' directly",
+      "To store only one entity at a time"
+    ],
+    "correct": 1,
+    "explanation": "The manager is an orchestrator, not a worker. It holds a list of entities, calls update() on them, and triggers methods like reactToCollision(). Each entity does its own work — the manager just coordinates."
+  },
+  {
+    "id": 52,
+    "type": "mcq",
+    "category": "Object Management",
+    "difficulty": "medium",
+    "question": "Why is storing entities in a List<iCollidable> better than a List<Object> for collision management?",
+    "options": [
+      "List<iCollidable> uses less memory",
+      "List<iCollidable> allows calling interface methods (collidesWith, reactToCollision) directly without casting, enabling polymorphic collision handling",
+      "List<Object> cannot store entity objects",
+      "List<iCollidable> automatically detects collisions"
+    ],
+    "correct": 1,
+    "explanation": "With List<iCollidable>, you can call any method declared in iCollidable (like reactToCollision()) directly on each element. With List<Object>, you would need to cast to iCollidable first. Polymorphism then ensures each entity's override runs."
+  },
+  {
+    "id": 53,
+    "type": "mcq",
+    "category": "Object Management",
+    "difficulty": "medium",
+    "question": "Player detects a collision with an EnemyBullet. Using the iCollidable interface and polymorphism, what happens?",
+    "options": [
+      "Both Player and EnemyBullet execute the same default collision behaviour",
+      "Player's reactToCollision() takes damage; EnemyBullet's reactToCollision() plays explosion animation and deletes itself — each handles it their own way",
+      "The manager class directly removes the EnemyBullet and reduces Player health",
+      "Nothing happens until the game manually checks for collision responses"
+    ],
+    "correct": 1,
+    "explanation": "This is polymorphism in action. Both Player and EnemyBullet implement iCollidable and override reactToCollision() with their own behaviour. The collision manager calls reactToCollision() on both, each executing their own logic."
+  },
+  {
+    "id": 54,
+    "type": "mcq",
+    "category": "Object Management",
+    "difficulty": "hard",
+    "question": "In the object management context, what does 'code to abstraction' mean and why is it recommended?",
+    "options": [
+      "Write all code using abstract classes to prevent instantiation",
+      "Write code that depends on abstract types or interfaces rather than concrete classes, so it works with any subtype without modification",
+      "Avoid using concrete classes entirely in a game",
+      "Only use abstract methods in all classes"
+    ],
+    "correct": 1,
+    "explanation": "Coding to abstraction means your manager stores List<iCollidable> rather than List<Player> or List<Bullet>. This means any new entity type that implements iCollidable works automatically with the existing manager — no changes needed."
+  },
+  {
+    "id": 55,
+    "type": "mcq",
+    "category": "Object Management",
+    "difficulty": "hard",
+    "question": "Which OOP concept allows a single collision detection loop to handle Player, Bullet, Enemy, and PowerUp all differently, despite being stored in the same list?",
+    "options": [
+      "Encapsulation",
+      "Inheritance alone",
+      "Polymorphism — each entity overrides reactToCollision() with its own implementation",
+      "Abstraction alone"
+    ],
+    "correct": 2,
+    "explanation": "Polymorphism + method overriding: when the loop calls entity.reactToCollision(), Java resolves which override to call based on the actual runtime type. Player runs its damage logic, Bullet runs its destroy logic — all from one loop."
+  },
+  {
+    "id": 56,
+    "type": "mcq",
+    "category": "Design Patterns - Singleton",
+    "difficulty": "hard",
+    "question": "A student writes: 'EngineCore e1 = EngineCore.getInstance(); EngineCore e2 = EngineCore.getInstance();'. What is the result?",
+    "options": [
+      "e1 and e2 are two different EngineCore objects",
+      "A compile error — getInstance() cannot be called twice",
+      "e1 and e2 point to the same single EngineCore object",
+      "e1 holds the real object; e2 holds a copy"
+    ],
+    "correct": 2,
+    "explanation": "The first call creates the object and stores it in the static 'instance' field. The second call finds instance != null and returns the same object. e1 == e2 would be true — they reference the exact same object in memory."
+  },
+  {
+    "id": 57,
+    "type": "mcq",
+    "category": "Design Patterns - Factory",
+    "difficulty": "hard",
+    "question": "A student writes: 'Square shape1 = shapeFactory.getShape(\"SQUARE\");'. Will this compile?",
+    "options": [
+      "Yes — getShape returns the exact concrete type",
+      "No — getShape() returns type Shape (the interface), which cannot be assigned to Square without casting",
+      "Yes — because Square implements Shape",
+      "No — because shapeFactory is not declared as Square"
+    ],
+    "correct": 1,
+    "explanation": "getShape() declares its return type as Shape, not Square. Even though the actual object is a Square, you can only assign it to a Shape reference without explicit casting. This is the 'slight limitation' mentioned in the lecture — you must store the result in the parent/interface type."
+  },
+  {
+    "id": 58,
+    "type": "mcq",
+    "category": "Components and Layers",
+    "difficulty": "hard",
+    "question": "Why is the Abstract Engine designed to be game-agnostic (not tied to any specific game)?",
+    "options": [
+      "So it runs faster without game-specific code",
+      "So the same engine can be reused to build multiple different games or simulations — the engine is the reusable foundation, not game logic",
+      "Because game-specific code would cause compile errors in the engine",
+      "Because the engine is always written first before the game concept is known"
+    ],
+    "correct": 1,
+    "explanation": "A game-agnostic engine (with abstract Entity, Collidable, physics, input, etc.) can power any game that extends and implements its abstract classes. The lecture explicitly states the engine should be 'robust enough to do more than just one specific thing'."
+  },
+  {
+    "id": 59,
+    "type": "mcq",
+    "category": "Generics",
+    "difficulty": "hard",
+    "question": "Given: public <T> T getFirst(List<T> list) { return list.get(0); }\nThis method is in a non-generic class. What is true about this method?",
+    "options": [
+      "It will not compile because T is not defined at the class level",
+      "The <T> before the return type makes this a generic method — T is scoped to this method only",
+      "T defaults to Object because no class-level type is defined",
+      "The method can only be called if the class is also declared generic"
+    ],
+    "correct": 1,
+    "explanation": "A method can declare its own type parameter independently with <T> before the return type. T is scoped to just this method — it does not need a class-level type parameter. The compiler infers T from the argument passed when the method is called."
+  },
+  {
+    "id": 60,
+    "type": "mcq",
+    "category": "Object Management",
+    "difficulty": "medium",
+    "question": "The lecture mentions 'don't get overly upset about down-casting for this module, but try to avoid it by design.' What design approach helps avoid down-casting?",
+    "options": [
+      "Using more concrete types in lists",
+      "Using interface or abstract type lists (e.g. List<iCollidable>) so methods can be called polymorphically without needing to cast to the concrete type",
+      "Using static methods instead of instance methods",
+      "Creating separate lists for each entity type"
+    ],
+    "correct": 1,
+    "explanation": "Down-casting (casting from a base type to a specific subtype) is often a sign of poor design. Using interface lists (List<iCollidable>) avoids it — you call the interface method, and polymorphism routes to the correct override without ever needing to know the concrete type."
+  }
+]

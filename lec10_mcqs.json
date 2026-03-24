@@ -1,0 +1,602 @@
+[
+  {
+    "id": 1,
+    "type": "mcq",
+    "category": "C++ vs C",
+    "difficulty": "easy",
+    "question": "Which of the following is the correct C++ replacement for C's printf()?",
+    "options": [
+      "print()",
+      "cout <<",
+      "System.out.println()",
+      "write()"
+    ],
+    "correct": 1,
+    "explanation": "C++ uses 'cout <<' from the <iostream> header. printf() is C's stdio.h function. System.out.println() is Java. This is one of the most fundamental C-to-C++ syntax differences."
+  },
+  {
+    "id": 2,
+    "type": "mcq",
+    "category": "C++ vs C",
+    "difficulty": "medium",
+    "question": "Which of the following features exists in C++ but NOT in C?",
+    "options": [
+      "Pointers",
+      "Arrays",
+      "The reference type (&) for pass-by-reference",
+      "Structs"
+    ],
+    "correct": 2,
+    "explanation": "C supports pointers, arrays, and structs. The reference type (&) is a C++-exclusive pass-by-reference mechanism. In C, you must use pointers to achieve the same effect."
+  },
+  {
+    "id": 3,
+    "type": "mcq",
+    "category": "C++ vs C",
+    "difficulty": "medium",
+    "question": "What happens when you try to declare a variable in the MIDDLE of a code block in C89/C90 (not C++)?",
+    "options": [
+      "It is treated as a global variable",
+      "It compiles fine in all C standards",
+      "It causes a compile error — variables must be declared at the top of the block",
+      "It automatically becomes a pointer"
+    ],
+    "correct": 2,
+    "explanation": "In C89/C90 (the original C standard), all variable declarations must appear at the top of a block before any statements. C99 relaxed this restriction. C++ has always allowed mid-block declarations."
+  },
+  {
+    "id": 4,
+    "type": "mcq",
+    "category": "C++ vs C",
+    "difficulty": "medium",
+    "question": "Which statement correctly describes how C handles strings?",
+    "options": [
+      "C uses a built-in string object like C++",
+      "C uses null-terminated character arrays (char[])",
+      "C uses StringBuilder for string operations",
+      "C and C++ handle strings identically"
+    ],
+    "correct": 1,
+    "explanation": "C has no native string type. It represents strings as null-terminated char arrays (e.g., char name[] = \"Joan\"). C++ adds the string class (#include <string>) while also supporting C-style char arrays."
+  },
+  {
+    "id": 5,
+    "type": "mcq",
+    "category": "C++ vs C",
+    "difficulty": "hard",
+    "question": "A developer writes the following C code:\n\nint main() {\n  int x = 5;\n  printf(\"%d\", x);\n  int y = 10;  // declared mid-block\n  return 0;\n}\n\nWhich statement is most accurate?",
+    "options": [
+      "This compiles fine in all C and C++ compilers",
+      "This compiles in C++ and C99+, but would fail in strict C89/C90",
+      "This compiles in C89 but not C++",
+      "This is only valid in Java"
+    ],
+    "correct": 1,
+    "explanation": "C89/C90 requires all variables declared at the top of a block before any statements. C99 relaxed this. C++ has always allowed mid-block declarations. This is a key C-to-C++ transferable difference."
+  },
+  {
+    "id": 6,
+    "type": "mcq",
+    "category": "Pointers & References",
+    "difficulty": "easy",
+    "question": "Given: int x = 5; int* ptr = &x;\nWhat does *ptr evaluate to?",
+    "options": [
+      "The memory address of x",
+      "5",
+      "The memory address of ptr itself",
+      "A compile error"
+    ],
+    "correct": 1,
+    "explanation": "*ptr dereferences the pointer, retrieving the VALUE stored at the address ptr holds. Since ptr holds the address of x, and x = 5, *ptr evaluates to 5."
+  },
+  {
+    "id": 7,
+    "type": "mcq",
+    "category": "Pointers & References",
+    "difficulty": "medium",
+    "question": "Which function prototype correctly declares a reference parameter?",
+    "options": [
+      "void func(int *x);",
+      "void func(ref int x);",
+      "void func(int &x);",
+      "void func(int x&);"
+    ],
+    "correct": 2,
+    "explanation": "Reference parameters use '&' after the type: void func(int &x). Option A is a pointer parameter. Option B is C# syntax. Option D is invalid syntax. The & must appear in both the prototype AND the function definition."
+  },
+  {
+    "id": 8,
+    "type": "mcq",
+    "category": "Pointers & References",
+    "difficulty": "medium",
+    "question": "Consider: void swap(int &a, int &b) { int t = a; a = b; b = t; }\nCalled as: swap(x, y);\nWhat is the result?",
+    "options": [
+      "x and y are unchanged — copies are swapped internally",
+      "x and y are swapped in-place in the caller",
+      "Only x changes",
+      "Compile error: cannot pass variables to reference parameters"
+    ],
+    "correct": 1,
+    "explanation": "Reference parameters work with the ORIGINAL variables, not copies. Changes to 'a' and 'b' inside swap() directly modify 'x' and 'y' in the calling scope. This is pass-by-reference in action."
+  },
+  {
+    "id": 9,
+    "type": "mcq",
+    "category": "Pointers & References",
+    "difficulty": "hard",
+    "question": "Pointer ptr is at address 0xF300, holds value 0xF30F. Variable at 0xF30F holds value 10. What does each expression return?\nptr / *ptr / &ptr",
+    "options": [
+      "10 / 0xF30F / 0xF300",
+      "0xF30F / 10 / 0xF300",
+      "0xF300 / 10 / 0xF30F",
+      "0xF30F / 0xF300 / 10"
+    ],
+    "correct": 1,
+    "explanation": "ptr = the address it STORES (0xF30F — what's in its box). *ptr = the VALUE at that address (10 — dereference). &ptr = the pointer's OWN address (0xF300 — where the pointer itself lives). This is the 'house analogy' from the lecture."
+  },
+  {
+    "id": 10,
+    "type": "mcq",
+    "category": "Pointers & References",
+    "difficulty": "hard",
+    "question": "When is it INAPPROPRIATE to use reference parameters?",
+    "options": [
+      "When you want to return multiple values",
+      "When the function should modify the caller's variable",
+      "When the argument should NOT be changed by the function",
+      "When passing large objects to avoid copying overhead"
+    ],
+    "correct": 2,
+    "explanation": "The lecture explicitly states: do NOT use reference parameters when the argument should not be changed by the function, or when the function only needs to return 1 value. Reference parameters imply intent to modify."
+  },
+  {
+    "id": 11,
+    "type": "mcq",
+    "category": "Pointers & References",
+    "difficulty": "hard",
+    "question": "What type of argument CANNOT be passed to a reference parameter?",
+    "options": [
+      "A local variable",
+      "A global variable",
+      "A literal value or expression (e.g., func(5) or func(x+1))",
+      "A struct member"
+    ],
+    "correct": 2,
+    "explanation": "Reference parameters must bind to a named variable (an lvalue). Literals like 5 and expressions like x+1 are rvalues with no persistent address. You cannot write func(5) if func takes int &x."
+  },
+  {
+    "id": 12,
+    "type": "mcq",
+    "category": "C++ Features",
+    "difficulty": "medium",
+    "question": "What does setw(8) do in a C++ output statement?",
+    "options": [
+      "Sets precision to 8 decimal places for ALL subsequent values",
+      "Prints the NEXT value in a field at least 8 spaces wide (applies once only)",
+      "Truncates the output to 8 characters",
+      "Sets width for all subsequent output values permanently"
+    ],
+    "correct": 1,
+    "explanation": "setw(n) establishes a print field of n spaces — but ONLY for the immediately next value. It does not persist. You must repeat setw() before each value you want padded. Contrast this with 'fixed' which persists until changed."
+  },
+  {
+    "id": 13,
+    "type": "mcq",
+    "category": "C++ Features",
+    "difficulty": "medium",
+    "question": "What is the output of: cout << fixed << setprecision(2) << 3.14159 ?",
+    "options": [
+      "3.14159",
+      "3.1",
+      "3.14",
+      "3"
+    ],
+    "correct": 2,
+    "explanation": "'fixed' activates fixed-point (decimal) notation. 'setprecision(2)' with fixed prints exactly 2 digits after the decimal point. So 3.14159 rounds to 3.14."
+  },
+  {
+    "id": 14,
+    "type": "mcq",
+    "category": "C++ Features",
+    "difficulty": "hard",
+    "question": "Which stream manipulators PERSIST across multiple output statements (unlike setw)?",
+    "options": [
+      "Only setw persists",
+      "fixed, setprecision, and showpoint persist; setw does NOT",
+      "All manipulators persist permanently",
+      "None persist — all must be repeated"
+    ],
+    "correct": 1,
+    "explanation": "setw only affects the very next output value. fixed, setprecision(n), and showpoint remain active until explicitly changed or the program ends. This distinction is critical for formatted output tables."
+  },
+  {
+    "id": 15,
+    "type": "mcq",
+    "category": "C++ Features",
+    "difficulty": "medium",
+    "question": "Why can using 'cin >>' to input a string be problematic?",
+    "options": [
+      "It reads too many characters",
+      "It skips over leading whitespace characters, potentially causing input issues",
+      "It only works with integers",
+      "It crashes on multi-word inputs by throwing an exception"
+    ],
+    "correct": 1,
+    "explanation": "cin >> ignores leading whitespace (spaces, tabs, newlines). This can cause it to skip expected input. The fix is to use getline(cin, str) which reads the full line including spaces."
+  },
+  {
+    "id": 16,
+    "type": "mcq",
+    "category": "C++ Features",
+    "difficulty": "hard",
+    "question": "In C++, which of the following correctly declares and initializes a vector of integers, then iterates over it?",
+    "options": [
+      "int numbers[] = {1,2,3}; for(int v : numbers)",
+      "vector<int> numbers {10,20,30}; for(int val : numbers) cout << val;",
+      "List<int> numbers = new List<int>(); for(int v in numbers)",
+      "int* numbers = {10,20,30}; for(auto v : numbers)"
+    ],
+    "correct": 1,
+    "explanation": "C++ vectors use the vector<T> template with #include <vector>. The range-based for loop 'for(int val : numbers)' is valid C++11+. Option A uses a plain array. Option C is C#. Option D is invalid pointer initialization."
+  },
+  {
+    "id": 17,
+    "type": "mcq",
+    "category": "C++ Features",
+    "difficulty": "medium",
+    "question": "What is the purpose of a struct in C++?",
+    "options": [
+      "To define a loop structure",
+      "To group multiple variables of different types under one name",
+      "To create a Singleton instance",
+      "To declare abstract methods"
+    ],
+    "correct": 1,
+    "explanation": "A struct groups related data fields (like studentID, name, gpa) under one named type. In C++, unlike C, structs can also contain methods. Members are public by default (vs private in class)."
+  },
+  {
+    "id": 18,
+    "type": "mcq",
+    "category": "Dynamic Memory",
+    "difficulty": "medium",
+    "question": "What is a Copy Constructor in C++?",
+    "options": [
+      "A constructor that creates an empty default object",
+      "A constructor invoked when a new object is initialized FROM an existing object of the same class",
+      "A method that deletes a copy of an object",
+      "A static factory method for cloning"
+    ],
+    "correct": 1,
+    "explanation": "The copy constructor is called when writing: MyClass obj2 = obj1; or passing an object by value. It handles deep copying. It's analogous to Java's clone() method but requires no Cloneable interface."
+  },
+  {
+    "id": 19,
+    "type": "mcq",
+    "category": "Dynamic Memory",
+    "difficulty": "hard",
+    "question": "Why are destructors especially important in C++ compared to Java?",
+    "options": [
+      "Java destructors run faster",
+      "C++ has no automatic garbage collection, so the destructor must explicitly free dynamic memory to prevent leaks",
+      "Java doesn't have destructors at all",
+      "C++ destructors are optional and rarely needed"
+    ],
+    "correct": 1,
+    "explanation": "Java has a garbage collector that automatically reclaims memory. C++ does not. Memory allocated with 'new' must be freed with 'delete' — typically in the destructor. Without this, you get memory leaks."
+  },
+  {
+    "id": 20,
+    "type": "mcq",
+    "category": "Dynamic Memory",
+    "difficulty": "hard",
+    "question": "A C++ class has a pointer member that points to heap memory. You copy this object without a custom copy constructor. What problem occurs?",
+    "options": [
+      "The program crashes immediately",
+      "A 'shallow copy' is made — both objects point to the SAME heap memory, causing double-free errors when either destructor runs",
+      "The pointer is automatically deep-copied",
+      "The heap memory is duplicated with no issue"
+    ],
+    "correct": 1,
+    "explanation": "Without a custom copy constructor, C++ performs a shallow copy — copying the pointer value, not what it points to. Both objects share the same heap data. When both destructors run, the same memory is freed twice (undefined behavior)."
+  },
+  {
+    "id": 21,
+    "type": "mcq",
+    "category": "OOP Concepts",
+    "difficulty": "easy",
+    "question": "What does encapsulation mean in OOP?",
+    "options": [
+      "Making all variables public for easy access",
+      "Bundling data and methods in a class, restricting direct access to internal components",
+      "Inheriting all properties from a parent class",
+      "Using the same method name for different types"
+    ],
+    "correct": 1,
+    "explanation": "Encapsulation hides implementation details and exposes only what's necessary via public interfaces. It protects the object's internal state from unintended modification."
+  },
+  {
+    "id": 22,
+    "type": "mcq",
+    "category": "OOP Concepts",
+    "difficulty": "medium",
+    "question": "In a C++ project, where should the IMPLEMENTATION of class methods go?",
+    "options": [
+      "In the .h header file only",
+      "In the .cpp source file (some small implementations allowed in .h)",
+      "In a separate .xml configuration file",
+      "In the main() function"
+    ],
+    "correct": 1,
+    "explanation": "Header (.h) files store declarations. Source (.cpp) files contain the implementations. Some small implementations are allowed in headers, but most code belongs in the .cpp file. This mirrors procedural C where function declarations are at the top."
+  },
+  {
+    "id": 23,
+    "type": "mcq",
+    "category": "OOP Concepts",
+    "difficulty": "medium",
+    "question": "Which code quality attribute describes: 'The system can handle more load by adding more resources, without fundamental redesign'?",
+    "options": [
+      "Extensible",
+      "Testable",
+      "Scalable",
+      "Graceful"
+    ],
+    "correct": 2,
+    "explanation": "Scalable = handle increasing load (more users, data, requests) by adding resources. Extensible = add new features without redesigning. These are different! Restaurant analogy: Scalable = add more chefs/tables. Extensible = add new menu items."
+  },
+  {
+    "id": 24,
+    "type": "mcq",
+    "category": "OOP Concepts",
+    "difficulty": "hard",
+    "question": "Which OOP concept allows a subclass to provide a specific implementation of a method defined in a parent class?",
+    "options": [
+      "Encapsulation",
+      "Operator overloading",
+      "Method overriding (Runtime Polymorphism)",
+      "Method overloading (Compile-time Polymorphism)"
+    ],
+    "correct": 2,
+    "explanation": "Runtime polymorphism via method overriding allows subclasses to redefine inherited methods. The correct method is called based on the object's actual type at runtime (via virtual functions in C++). Method overloading is COMPILE-time polymorphism."
+  },
+  {
+    "id": 25,
+    "type": "mcq",
+    "category": "Design Patterns",
+    "difficulty": "medium",
+    "question": "Which design pattern ensures only ONE instance of a class exists throughout the entire application?",
+    "options": [
+      "Factory",
+      "Abstract Factory",
+      "Singleton",
+      "Observer"
+    ],
+    "correct": 2,
+    "explanation": "Singleton restricts instantiation to one object and provides a global access point. Useful for game managers, configuration, or logging where multiple instances would cause conflicts."
+  },
+  {
+    "id": 26,
+    "type": "mcq",
+    "category": "Design Patterns",
+    "difficulty": "medium",
+    "question": "The Factory pattern is best described as:",
+    "options": [
+      "A pattern that limits a class to one instance",
+      "A pattern that creates objects without the caller specifying the exact concrete class",
+      "A pattern that notifies multiple objects when state changes",
+      "A pattern for organizing a hierarchy of algorithms"
+    ],
+    "correct": 1,
+    "explanation": "Factory centralizes and abstracts object creation. The client requests an object (e.g., ShapeFactory.getShape('circle')) without knowing Circle's constructor details. This supports the Open/Closed principle."
+  },
+  {
+    "id": 27,
+    "type": "mcq",
+    "category": "Design Patterns",
+    "difficulty": "hard",
+    "question": "You're designing a game where the same Enemy/Player entities appear in Forest, Fire, and Water worlds with different visual/behavior variants. Which pattern is MOST appropriate?",
+    "options": [
+      "Singleton — ensure only one of each enemy type exists",
+      "Factory — create each enemy type independently",
+      "Abstract Factory — create families of themed entities (all forest entities from ForestFactory)",
+      "Observer — watch for player entering each world"
+    ],
+    "correct": 2,
+    "explanation": "Abstract Factory creates FAMILIES of related objects. ForestFactory produces ForestEnemy + ForestPlayer + ForestBoss as a themed set. This is exactly the 'same enemy in different themes' question raised in the lecture."
+  },
+  {
+    "id": 28,
+    "type": "mcq",
+    "category": "Design Patterns",
+    "difficulty": "hard",
+    "question": "In the Entity Manager example from the lecture, what benefit does: entityManager.registerFactory(Player.class, new PlayerFactory()) provide over a simple 'new Player()'?",
+    "options": [
+      "It reduces RAM usage by pooling objects",
+      "It allows entity creation without casting — createEntity(Player.class) returns Player type directly",
+      "It prevents the Player from being garbage collected",
+      "It automatically assigns a unique ID to each entity"
+    ],
+    "correct": 1,
+    "explanation": "By registering typed factories, createEntity(Player.class) returns the correct Player type directly with no casting needed. This improves type safety, readability, and follows the Open/Closed principle — new entity types just need a new factory registration."
+  },
+  {
+    "id": 29,
+    "type": "mcq",
+    "category": "Design Patterns",
+    "difficulty": "hard",
+    "question": "Which SOLID principle states: 'Software entities should be open for EXTENSION but closed for MODIFICATION'?",
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Liskov Substitution Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 1,
+    "explanation": "The Open/Closed Principle means you should be able to add new functionality (open for extension) without changing existing tested code (closed for modification). Achieved through abstraction, inheritance, and interfaces."
+  },
+  {
+    "id": 30,
+    "type": "mcq",
+    "category": "Design Patterns",
+    "difficulty": "hard",
+    "question": "A class called GameManager handles player input, enemy spawning, score tracking, AND sound effects. Which SOLID principle does this violate?",
+    "options": [
+      "Open/Closed Principle",
+      "Liskov Substitution Principle",
+      "Single Responsibility Principle",
+      "Interface Segregation Principle"
+    ],
+    "correct": 2,
+    "explanation": "Single Responsibility Principle: a class should have ONE reason to change. GameManager has at least four responsibilities — input, spawning, scoring, sound. These should be separate classes (InputManager, SpawnManager, ScoreManager, AudioManager)."
+  },
+  {
+    "id": 31,
+    "type": "mcq",
+    "category": "Problem Solving",
+    "difficulty": "easy",
+    "question": "In Design Thinking, which phase comes FIRST?",
+    "options": [
+      "Ideate",
+      "Prototype",
+      "Empathize",
+      "Define"
+    ],
+    "correct": 2,
+    "explanation": "Design Thinking phases: Empathize → Define → Ideate → Prototype → Test. You must first understand your users (Empathize) before you can accurately define the problem."
+  },
+  {
+    "id": 32,
+    "type": "mcq",
+    "category": "Problem Solving",
+    "difficulty": "medium",
+    "question": "Which of the following is NOT part of the Critical Thinking phases (as shown in the lecture)?",
+    "options": [
+      "Identify",
+      "Analyse",
+      "Empathize",
+      "Evaluate"
+    ],
+    "correct": 2,
+    "explanation": "Critical Thinking phases are: Clarify, Question, Identify, Analyse, Evaluate, Create. 'Empathize' belongs to Design Thinking, not Critical Thinking. Knowing which framework each phase belongs to is key."
+  },
+  {
+    "id": 33,
+    "type": "mcq",
+    "category": "Problem Solving",
+    "difficulty": "medium",
+    "question": "What does 'Solution Design' require, according to the lecture?",
+    "options": [
+      "Writing code first, then documenting it",
+      "A clear understanding of audience, requirements, constraints, and objectives BEFORE implementation",
+      "Assigning tasks to team members",
+      "Only the lead developer's input"
+    ],
+    "correct": 1,
+    "explanation": "Solution design is the process of creating a detailed PLAN before building. It requires understanding who you're building for (audience), what they need (requirements), what limits exist (constraints), and what success looks like (objectives)."
+  },
+  {
+    "id": 34,
+    "type": "mcq",
+    "category": "Problem Solving",
+    "difficulty": "hard",
+    "question": "A team starts coding immediately after receiving requirements, skipping design phases. Which outcome does the lecture suggest is MOST likely?",
+    "options": [
+      "Faster delivery with no quality issues",
+      "The code will be automatically SOLID-compliant",
+      "More issues/problems encountered during Operationalization that could have been mitigated by prior design",
+      "Better creativity since there are no design constraints"
+    ],
+    "correct": 2,
+    "explanation": "The lecture states: 'Above steps help mitigate the amount of issues we may face' during Operationalization. Skipping Problem Definition, Solution Design, and Software Design leads to rework, misaligned features, and technical debt."
+  },
+  {
+    "id": 35,
+    "type": "mcq",
+    "category": "Problem Solving",
+    "difficulty": "medium",
+    "question": "In game design, which is the BEST description of 'core mechanics'?",
+    "options": [
+      "The game engine's underlying physics simulation",
+      "The primary action the player performs MOST of the time — must be engaging, intuitive, and simple",
+      "Advanced features unlocked at the end of the game",
+      "The backend database queries"
+    ],
+    "correct": 1,
+    "explanation": "Core mechanics = what the user does most of the time. They MUST be interesting, engaging, and intuitive. 'Simple and engaging is a winning combination.' The key design question is: how can simple mechanics be used in interesting ways?"
+  },
+  {
+    "id": 36,
+    "type": "mcq",
+    "category": "Problem Solving",
+    "difficulty": "hard",
+    "question": "An educational game interrupts gameplay every 5 minutes with a pop-up quiz and text to read. Which game-based learning principle does this VIOLATE?",
+    "options": [
+      "Stealth learning — the educational content should be embedded naturally in gameplay, not feel like a quiz",
+      "Scalability — the game should support more questions",
+      "SOLID principles — the quiz class should have one responsibility",
+      "Operationalization — the game hasn't been tested enough"
+    ],
+    "correct": 0,
+    "explanation": "Stealth learning is the 'holy grail' — education happens naturally through play. Interrupting with explicit quizzes/text breaks immersion and makes it feel like a chore. The lecture says: 'educational in games shouldn't be quiz/information sheet to read'."
+  },
+  {
+    "id": 37,
+    "type": "mcq",
+    "category": "Transferable Concepts",
+    "difficulty": "medium",
+    "question": "Which of the following concepts is shared across C, C++, AND Java?",
+    "options": [
+      "Pointers",
+      "Structs",
+      "Automatic garbage collection",
+      "Flow control structures (loops, conditionals, functions)"
+    ],
+    "correct": 3,
+    "explanation": "All three languages share: data types, variables, data structures, flow control (if/else, loops), and functions/methods. Pointers and structs are C/C++ only. Automatic garbage collection is Java (and modern C++ uses smart pointers)."
+  },
+  {
+    "id": 38,
+    "type": "mcq",
+    "category": "Transferable Concepts",
+    "difficulty": "medium",
+    "question": "Which language does NOT have a native boolean type and typically uses int instead?",
+    "options": [
+      "Java",
+      "C++",
+      "Python",
+      "C (C89/C90)"
+    ],
+    "correct": 3,
+    "explanation": "C (particularly C89/C90) lacks a native bool type and uses int (0 = false, non-zero = true). C99 added <stdbool.h>. C++ has bool. Java has boolean. This is highlighted in the lecture's language comparison table."
+  },
+  {
+    "id": 39,
+    "type": "mcq",
+    "category": "Transferable Concepts",
+    "difficulty": "hard",
+    "question": "What is the correct bit size and range for 'unsigned int' in C/C++ as shown in the lecture?",
+    "options": [
+      "32-bit, -2,147,483,647 to 2,147,483,647",
+      "16-bit, 0 to 65,535",
+      "8-bit, 0 to 255",
+      "64-bit, 0 to 4,294,967,295"
+    ],
+    "correct": 1,
+    "explanation": "Per the lecture's modifier table: unsigned int is 16-bit with range 0 to 65,535 (no negative values). 'Unsigned' removes the sign bit, giving the full range to positive values. Note: actual sizes can vary by platform in practice."
+  },
+  {
+    "id": 40,
+    "type": "mcq",
+    "category": "Transferable Concepts",
+    "difficulty": "hard",
+    "question": "According to the lecture's mindset advice for the age of AI, which statement BEST reflects good professional practice?",
+    "options": [
+      "Always use the language you know best, regardless of the project",
+      "AI can write all the code, so language choice no longer matters",
+      "Choose languages based on FIT FOR PURPOSE; AI assists but you must still understand what's right for the task",
+      "Only learn one language deeply rather than spreading across multiple"
+    ],
+    "correct": 2,
+    "explanation": "The lecture explicitly states: 'AI making life easier, but you still need to choose the right language/technology for the task.' Use language based on fit for purpose, not because 'I know this language.' Growth Mindset — adaptability is key."
+  }
+]
