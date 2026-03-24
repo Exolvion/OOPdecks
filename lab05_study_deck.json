@@ -1,0 +1,387 @@
+[
+  {
+    "question": "What does this code output?\n\n```java\nList<String> list = new ArrayList<>();\nlist.add(\"cat\");\nlist.add(\"dog\");\nfor (String s : list) {\n    System.out.print(s + \" \");\n}\n```",
+    "options": ["cat dog", "dog cat", "Compilation error", "Runtime error"],
+    "correct": 0,
+    "explanation": "ArrayList maintains insertion order. 'cat' was added first, then 'dog', so they print in that order.",
+    "category": "Generics & Collections",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "Which line correctly declares a generic ArrayList that can only hold objects implementing the Animals interface?\n\n```java\n// Option A\nList animals = new ArrayList();\n// Option B\nArrayList<Animals> animals = new ArrayList<Animals>();\n// Option C\nArrayList<Animals> animals = new ArrayList<Object>();\n// Option D\nList<Object> animals = new ArrayList<Animals>();\n```",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "correct": 1,
+    "explanation": "Option B is correct. Option A uses raw types (no generics). Option C is a type mismatch. Option D is also a type mismatch — you cannot assign ArrayList<Animals> to List<Object> because generics are invariant in Java.",
+    "category": "Generics & Collections",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What is wrong with this factory method?\n\n```java\npublic Animals getAnimal(String animal) {\n    switch (animal) {\n        case \"CAT\": return new Cat();\n        case \"DOG\": return new Dog();\n    }\n}\n```",
+    "options": [
+      "switch cannot be used with Strings in Java",
+      "The method is missing a return or default for when no case matches",
+      "Cat and Dog cannot be returned as Animals type",
+      "Nothing is wrong"
+    ],
+    "correct": 1,
+    "explanation": "The compiler will complain that not all code paths return a value. You need either a default case (e.g., return null) or a return statement after the switch block.",
+    "category": "Factory Pattern",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "Fill in the blank — what should replace `___` so the interface is correct?\n\n```java\npublic interface Animals {\n    ___ talk();\n}\n```",
+    "options": ["void", "String", "Animals", "Object"],
+    "correct": 1,
+    "explanation": "The talk() method is supposed to return a String (e.g., 'Bark like a dog...'). Interface methods declare return types just like regular methods.",
+    "category": "Interfaces",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "What does this code demonstrate?\n\n```java\nArrayList<Animals> animals = new ArrayList<>();\nanimals.add(new Cat());\nanimals.add(new Dog());\nanimals.add(new Bird());\nfor (Animals a : animals) {\n    System.out.println(a.talk());\n}\n```",
+    "options": [
+      "Inheritance and method overloading",
+      "Polymorphism — different objects share a common interface and each calls its own implementation",
+      "Abstraction — hiding implementation details with abstract classes",
+      "Encapsulation — using private fields with public getters"
+    ],
+    "correct": 1,
+    "explanation": "This is polymorphism. Each element in the list is treated as an Animals type, but when talk() is called, each object dispatches its own concrete implementation (Cat meows, Dog barks, Bird tweets).",
+    "category": "Polymorphism",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "What is the output of this code?\n\n```java\npublic class Dog implements Animals {\n    public String talk() { return \"Bark like a dog...\"; }\n}\n\nAnimals a = new Dog();\nSystem.out.println(a.talk());\n```",
+    "options": [
+      "Compilation error — cannot assign Dog to Animals",
+      "Bark like a dog...",
+      "null",
+      "Runtime error"
+    ],
+    "correct": 1,
+    "explanation": "Since Dog implements Animals, a Dog reference can be assigned to an Animals variable. Calling talk() invokes Dog's implementation, printing 'Bark like a dog...'.",
+    "category": "Interfaces",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "Which SOLID principle is violated when you must edit AnimalFactory every time you add a new animal class?\n\n```java\npublic Animals getAnimal(String animal) {\n    switch (animal) {\n        case \"CAT\": return new Cat();\n        case \"DOG\": return new Dog();\n        // Must add SHEEP here = editing existing code\n        default: return null;\n    }\n}\n```",
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Liskov Substitution Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 1,
+    "explanation": "The Open/Closed Principle states classes should be open for extension but closed for modification. Having to edit AnimalFactory to add Sheep violates this — ideally adding a new type should not require modifying existing classes.",
+    "category": "SOLID Principles",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What does `T` represent in the following interface definition?\n\n```java\npublic interface EntityFactory<T extends Entity> {\n    T createEntity();\n}\n```",
+    "options": [
+      "A variable named T",
+      "A generic type parameter restricted to subclasses of Entity",
+      "The literal class called T",
+      "An unknown wildcard type"
+    ],
+    "correct": 1,
+    "explanation": "T is a generic type parameter. The bound `extends Entity` means T must be Entity or a subclass of it. When a class implements this interface, T is replaced with a concrete type like Player or Enemy.",
+    "category": "Generics",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What is the difference between `T` and `?` in Java generics?\n\n```java\n// Version A\nprivate List<T> items;\n// Version B\nprivate List<?> items;\n```",
+    "options": [
+      "They are identical — T and ? are interchangeable",
+      "T is a named type parameter (consistent within scope), ? is a wildcard representing an unknown type",
+      "? only works with collections, T works everywhere",
+      "T can only be used in interfaces, ? only in classes"
+    ],
+    "correct": 1,
+    "explanation": "T is a named generic type that must be consistent throughout its scope (e.g., a method using T always refers to the same type). ? is a wildcard meaning the type is unknown and can differ — useful when you need flexibility and don't need to reference the type by name.",
+    "category": "Generics",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What does this HashMap declaration mean?\n\n```java\nprivate final Map<Class<? extends Entity>, EntityFactory<? extends Entity>> factories = new HashMap<>();\n```",
+    "options": [
+      "A map from String keys to Entity values",
+      "A map linking a Class type (that extends Entity) to an EntityFactory (that also extends Entity) — allowing any Entity subtype to be registered",
+      "A map that can only store one type of Entity",
+      "This code will not compile"
+    ],
+    "correct": 1,
+    "explanation": "This HashMap pairs a Class token (like Player.class) with its matching EntityFactory. The `? extends Entity` wildcard means any subtype of Entity is accepted as both key and factory type, making the manager extensible without modification.",
+    "category": "Generics",
+    "difficulty": "hard",
+    "type": "mcq"
+  },
+  {
+    "question": "Fill in the blank so this method correctly registers a factory:\n\n```java\npublic <T extends Entity> void registerFactory(Class<T> type, EntityFactory<T> factory) {\n    ___(type, factory);\n}\n```",
+    "options": ["factories.add", "factories.put", "factories.set", "factories.insert"],
+    "correct": 1,
+    "explanation": "HashMap uses .put(key, value) to store entries. Here type is the key and factory is the value. .add() is for lists, .set() is for indexed collections like ArrayList.",
+    "category": "Factory Pattern",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "What happens when this createEntity method is called with a type that was never registered?\n\n```java\npublic <T extends Entity> T createEntity(Class<T> type) {\n    EntityFactory<?> factory = factories.get(type);\n    if (factory != null) {\n        return type.cast(factory.createEntity());\n    }\n    throw new IllegalArgumentException(\"Unknown entity type: \" + type.getSimpleName());\n}\n```",
+    "options": [
+      "Returns null",
+      "Returns a default Entity object",
+      "Throws an IllegalArgumentException",
+      "Throws a NullPointerException"
+    ],
+    "correct": 2,
+    "explanation": "factories.get(type) returns null when the type hasn't been registered. The null check fails, so execution falls through to the throw statement. This is defensive programming — failing loudly with a meaningful message rather than silently returning null.",
+    "category": "Factory Pattern",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What is the purpose of `type.cast(factory.createEntity())` in this code?\n\n```java\nreturn type.cast(factory.createEntity());\n```",
+    "options": [
+      "It converts the entity to a String",
+      "It performs a safe, reflective cast from the raw factory result back to type T, avoiding unchecked cast warnings",
+      "It calls the constructor of T",
+      "It is the same as writing (T) factory.createEntity()"
+    ],
+    "correct": 1,
+    "explanation": "type.cast() is a runtime-safe cast using the Class object. Because of Java's type erasure, T is not available at runtime, so we use the Class<T> token to perform the cast safely. It is functionally similar to (T) but avoids unchecked cast compiler warnings.",
+    "category": "Generics",
+    "difficulty": "hard",
+    "type": "mcq"
+  },
+  {
+    "question": "What is the output of this snippet?\n\n```java\npublic abstract class Entity {\n    public abstract void printType();\n}\npublic class Player extends Entity {\n    public void printType() { System.out.println(\"PlayerEntity\"); }\n}\n\nEntity e = new Player();\ne.printType();\n```",
+    "options": [
+      "Entity",
+      "PlayerEntity",
+      "Compilation error — cannot instantiate abstract class",
+      "null"
+    ],
+    "correct": 1,
+    "explanation": "Player extends Entity and provides a concrete implementation of printType(). Even though the reference is typed as Entity, polymorphism means the overriding method in Player is called at runtime, printing 'PlayerEntity'.",
+    "category": "Abstract Classes",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "Which code correctly implements the EntityFactory interface for Enemy?\n\n```java\n// Option A\nclass EnemyFactory extends EntityFactory<Enemy> {\n    public Enemy createEntity() { return new Enemy(); }\n}\n// Option B\nclass EnemyFactory implements EntityFactory<Enemy> {\n    public Enemy createEntity() { return new Enemy(); }\n}\n// Option C\nclass EnemyFactory implements EntityFactory {\n    public Entity createEntity() { return new Enemy(); }\n}\n// Option D\nclass EnemyFactory<Enemy> implements EntityFactory {\n    public Enemy createEntity() { return new Enemy(); }\n}\n```",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "correct": 1,
+    "explanation": "Interfaces are implemented with `implements`, not `extends` (eliminates A). Option B correctly implements the generic interface with Enemy as the type parameter, overriding createEntity() with the proper return type.",
+    "category": "Factory Pattern",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What is the key advantage of this EntityManager approach over the basic AnimalFactory switch approach?\n\n```java\nentityManager.registerFactory(Player.class, new PlayerFactory());\nentityManager.registerFactory(Enemy.class, new EnemyFactory());\n// Later, adding BossFactory requires NO edits to EntityManager:\nentityManager.registerFactory(Boss.class, new BossFactory());\n```",
+    "options": [
+      "It runs faster because it uses a HashMap instead of a switch",
+      "EntityManager never needs to be modified when new Entity types are added — it adheres to the Open/Closed Principle",
+      "It prevents null pointer exceptions automatically",
+      "It enforces that all entities must have a BossFactory"
+    ],
+    "correct": 1,
+    "explanation": "The HashMap-based approach is open for extension (new factories can be registered) but closed for modification (EntityManager.java is never edited). This is the Open/Closed Principle in action, fixing the flaw in the simple switch-based factory.",
+    "category": "SOLID Principles",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What is wrong with this code?\n\n```java\npublic abstract class Entity {\n    public abstract void printType();\n}\n\nEntity e = new Entity();\ne.printType();\n```",
+    "options": [
+      "printType() has no body",
+      "You cannot instantiate an abstract class directly",
+      "Entity needs to implement an interface first",
+      "abstract methods cannot be called on a variable"
+    ],
+    "correct": 1,
+    "explanation": "Abstract classes cannot be instantiated directly with `new Entity()`. They are meant to be subclassed. You would need to create a concrete subclass (e.g., Player) that implements printType(), then instantiate that.",
+    "category": "Abstract Classes",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "Which of the following correctly adds a Sheep to the animals list using the factory?\n\n```java\nAnimalFactory aFactory = new AnimalFactory();\nArrayList<Animals> animals = new ArrayList<>();\n// Option A\nanimals.add(aFactory.getAnimal(sheep));\n// Option B\nanimals.add(aFactory.getAnimal(\"SHEEP\"));\n// Option C\nanimals.add(new Animals(\"SHEEP\"));\n// Option D\nanimals.add(Animals.SHEEP);\n```",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "correct": 1,
+    "explanation": "The factory's getAnimal method takes a String. Option A uses an undefined variable `sheep`. Option C tries to instantiate an interface (impossible). Option D treats Animals like an enum. Option B correctly passes the string literal 'SHEEP'.",
+    "category": "Factory Pattern",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "What does type erasure mean in the context of Java generics?\n\n```java\n// At compile time:\nList<Player> players = new ArrayList<Player>();\n// At runtime, the JVM sees:\nList players = new ArrayList(); // type info is gone\n```",
+    "options": [
+      "Generic types are deleted from the source code",
+      "Generic type information is only used at compile time for type checking and is removed at runtime — the JVM works with raw types",
+      "You must manually erase type parameters before deployment",
+      "Type erasure prevents generics from working with abstract classes"
+    ],
+    "correct": 1,
+    "explanation": "Java generics are a compile-time feature. The compiler uses type parameters for type safety and then erases them, producing bytecode using raw types. This is why you need Class<T> tokens at runtime to recover type information (as in EntityManager).",
+    "category": "Generics",
+    "difficulty": "hard",
+    "type": "mcq"
+  },
+  {
+    "question": "What is the output?\n\n```java\nArrayList<Animals> list = new ArrayList<>();\nAnimalFactory f = new AnimalFactory();\nlist.add(f.getAnimal(\"CAT\"));\nlist.add(f.getAnimal(\"SHEEP\"));\nlist.add(f.getAnimal(\"UNKNOWN\"));\nfor (Animals a : list) {\n    if (a != null) System.out.print(a.talk() + \" | \");\n}\n```",
+    "options": [
+      "Meow like a cat... | Bleat like a sheep... | null |",
+      "Meow like a cat... | Bleat like a sheep... |",
+      "NullPointerException at runtime",
+      "Compilation error"
+    ],
+    "correct": 1,
+    "explanation": "The factory returns null for 'UNKNOWN' (default case). The null check `if (a != null)` skips the null entry. So only the cat and sheep produce output, separated by | with a trailing space.",
+    "category": "Factory Pattern",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "Which concept describes storing Dog, Cat, and Bird all inside `ArrayList<Animals>`?\n\n```java\nArrayList<Animals> animals = new ArrayList<>();\nanimals.add(new Dog());\nanimals.add(new Cat());\nanimals.add(new Bird());\n```",
+    "options": [
+      "Encapsulation",
+      "Polymorphism — objects of different concrete types are stored under a common interface type",
+      "Abstraction",
+      "Method overloading"
+    ],
+    "correct": 1,
+    "explanation": "This is polymorphism. Even though Dog, Cat, and Bird are different classes, they all implement Animals, so they can all be stored as Animals references. At runtime, each still behaves according to its own class.",
+    "category": "Polymorphism",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "What would happen if you tried to call this without registering PlayerFactory first?\n\n```java\nEntityManager em = new EntityManager();\n// registerFactory NOT called\nPlayer p = em.createEntity(Player.class);\n```",
+    "options": [
+      "Returns a default Player object",
+      "Returns null",
+      "Throws IllegalArgumentException: Unknown entity type: Player",
+      "Throws NullPointerException"
+    ],
+    "correct": 2,
+    "explanation": "factories.get(Player.class) returns null because nothing was registered. The if-check fails, and the method reaches `throw new IllegalArgumentException(\"Unknown entity type: \" + type.getSimpleName())`, throwing with the message 'Unknown entity type: Player'.",
+    "category": "Factory Pattern",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "In Java, can an interface have instance variables? What does this interface produce?\n\n```java\npublic interface Animals {\n    int legs = 4;\n    String talk();\n}\n```",
+    "options": [
+      "Compilation error — interfaces cannot have any fields",
+      "legs is implicitly public static final — it is a constant shared by all implementing classes",
+      "legs is an instance variable that each implementing class inherits",
+      "legs is private to the interface"
+    ],
+    "correct": 1,
+    "explanation": "Fields declared in a Java interface are implicitly `public static final` — they are constants, not instance variables. All implementing classes see the same value and cannot reassign it. This is different from abstract classes, which can have true instance variables.",
+    "category": "Interfaces",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What is the role of the factory pattern in this design?\n\n```java\nAnimals a = aFactory.getAnimal(\"DOG\");\n```\n\nThe calling code never writes `new Dog()` directly.",
+    "options": [
+      "It improves performance by caching objects",
+      "It centralises object creation, decoupling the caller from knowing concrete class names",
+      "It prevents Dog from being instantiated more than once",
+      "It makes Dog serializable"
+    ],
+    "correct": 1,
+    "explanation": "The Factory Pattern centralises object creation. The caller only needs to know the factory and a key string — it never imports or references Dog directly. This decouples creation logic from usage logic, making it easier to swap or extend implementations.",
+    "category": "Factory Pattern",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "Fill in the blank — what return type should `createEntity` have in EntityFactory?\n\n```java\npublic interface EntityFactory<T extends Entity> {\n    ___ createEntity();\n}\n```",
+    "options": ["Entity", "Object", "T", "void"],
+    "correct": 2,
+    "explanation": "The return type should be T — the generic type parameter. This allows PlayerFactory<Player> to return Player, and EnemyFactory<Enemy> to return Enemy, preserving type safety without casting at the call site.",
+    "category": "Generics",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What is the difference between an interface and an abstract class in Java? Which does Entity use?\n\n```java\npublic abstract class Entity {\n    public abstract void printType();\n}\npublic interface Animals {\n    String talk();\n}\n```",
+    "options": [
+      "No difference — both work the same way",
+      "Entity is an abstract class (can have state/constructors, single inheritance); Animals is an interface (no state, multiple implementation allowed)",
+      "Entity is an interface; Animals is an abstract class",
+      "Abstract classes can be instantiated; interfaces cannot"
+    ],
+    "correct": 1,
+    "explanation": "Abstract classes can contain fields, constructors, and concrete methods, but a class can only extend one. Interfaces traditionally had no state and allowed multiple implementation. Entity uses abstract class; Animals uses interface. Neither can be directly instantiated.",
+    "category": "Abstract Classes",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What is the output of this code?\n\n```java\npublic class Cat implements Animals {\n    public String talk() { return \"Meow like a cat...\"; }\n}\n\nAnimals c = new Cat();\nSystem.out.println(c instanceof Cat);\nSystem.out.println(c instanceof Animals);\n```",
+    "options": [
+      "false\\ntrue",
+      "true\\nfalse",
+      "true\\ntrue",
+      "false\\nfalse"
+    ],
+    "correct": 2,
+    "explanation": "Cat is both an instance of Cat (its concrete type) and an instance of Animals (the interface it implements). `instanceof` checks the actual runtime type, not the declared reference type. Both checks return true.",
+    "category": "Polymorphism",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "Why does the EntityManager use `Class<T>` as a key instead of a String like \"Player\"?\n\n```java\n// String approach (not used):\nfactories.put(\"Player\", new PlayerFactory());\n// Class token approach (used):\nfactories.put(Player.class, new PlayerFactory());\n```",
+    "options": [
+      "Strings are slower than Class objects in HashMaps",
+      "Using Class<T> provides compile-time type safety — a typo in a string won't be caught until runtime, but Player.class is validated by the compiler",
+      "Class objects are smaller in memory",
+      "String keys are not allowed in HashMaps"
+    ],
+    "correct": 1,
+    "explanation": "Class<T> tokens are checked at compile time — if you write Plyer.class it won't compile. A string like \"Plyer\" would compile fine and only fail at runtime. The Class approach also enables type-safe casting via type.cast(), which is central to the generic EntityManager design.",
+    "category": "Generics",
+    "difficulty": "hard",
+    "type": "mcq"
+  },
+  {
+    "question": "What does this code fail to do, and why?\n\n```java\nArrayList<Dog> dogs = new ArrayList<Dog>();\nArrayList<Animals> animals = dogs; // is this valid?\n```",
+    "options": [
+      "Valid — Dog implements Animals so the assignment is fine",
+      "Invalid — Java generics are invariant, so ArrayList<Dog> is not a subtype of ArrayList<Animals>",
+      "Valid — wildcards allow this automatically",
+      "Invalid — ArrayList cannot be assigned to ArrayList"
+    ],
+    "correct": 1,
+    "explanation": "Java generics are invariant. Even though Dog is a subtype of Animals, ArrayList<Dog> is NOT a subtype of ArrayList<Animals>. This prevents heap pollution. To allow flexible assignment you would need ArrayList<? extends Animals>.",
+    "category": "Generics",
+    "difficulty": "hard",
+    "type": "mcq"
+  },
+  {
+    "question": "Which design principle does this structure best demonstrate?\n\n```java\nEntityManager em = new EntityManager();\nem.registerFactory(Player.class, new PlayerFactory());\nem.registerFactory(Enemy.class, new EnemyFactory());\nem.registerFactory(Boss.class, new BossFactory()); // no edits to EntityManager\n```",
+    "options": [
+      "Single Responsibility Principle — each class does one thing",
+      "Open/Closed Principle — EntityManager is extended by registering new factories without modifying its source",
+      "Liskov Substitution Principle — Boss can replace Player anywhere",
+      "Interface Segregation Principle — interfaces are kept small"
+    ],
+    "correct": 1,
+    "explanation": "This is the Open/Closed Principle (OCP). EntityManager is open for extension (new entity types can be registered) but closed for modification (you never edit EntityManager.java). This is the explicit improvement the lab makes over the basic switch-based AnimalFactory.",
+    "category": "SOLID Principles",
+    "difficulty": "medium",
+    "type": "mcq"
+  }
+]

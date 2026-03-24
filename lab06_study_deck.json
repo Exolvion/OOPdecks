@@ -1,0 +1,383 @@
+[
+  {
+    "question": "What is the output of this C++ code?\n\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    cout << \"Hello\" << \" \" << \"World\" << endl;\n    return 0;\n}\n```",
+    "options": ["Hello World", "Hello\\nWorld", "Compilation error", "HelloWorld"],
+    "correct": 0,
+    "explanation": "`cout <<` outputs to standard output. The `<<` operator chains output. `endl` flushes the buffer and adds a newline but doesn't change what's printed on that line. Result: 'Hello World'.",
+    "category": "C++ Basics",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "Fill in the blank — which operator reads user input in C++?\n\n```cpp\nint choice = 0;\ncout << \"Enter a number: \";\n___ >> choice;\n```",
+    "options": ["cout", "cin", "scanf", "read"],
+    "correct": 1,
+    "explanation": "`cin` is the standard input stream. The `>>` extraction operator reads from standard input into the variable. `cout` is for output, `scanf` is C-style (works but not idiomatic C++), and `read` is not standard.",
+    "category": "C++ Basics",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "What is the difference between a `.h` file and a `.cpp` file in C++?\n\n```\nInventoryBin.h   → ???\nInventoryBin.cpp → ???\n```",
+    "options": [
+      ".h contains the implementation; .cpp contains the declaration",
+      ".h contains class declarations (interface/headers); .cpp contains the actual method implementations",
+      ".h files are only for #include statements",
+      "There is no functional difference"
+    ],
+    "correct": 1,
+    "explanation": "In C++, .h (header) files declare the class structure — member variables, method signatures, and access specifiers. .cpp (source) files contain the actual method implementations. Other files include the .h to know what the class looks like.",
+    "category": "C++ Classes",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "What does this C++ code mean?\n\n```cpp\nclass GearBin : public InventoryBin {\n};\n```",
+    "options": [
+      "GearBin implements the InventoryBin interface",
+      "GearBin publicly inherits from InventoryBin — it gets all of InventoryBin's public and protected members",
+      "GearBin is a private member of InventoryBin",
+      "GearBin and InventoryBin are the same class with different names"
+    ],
+    "correct": 1,
+    "explanation": "`: public InventoryBin` means GearBin inherits from InventoryBin with public access — public and protected members of InventoryBin remain accessible in GearBin. This is how inheritance works in C++, equivalent to `extends` in Java.",
+    "category": "C++ Inheritance",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "What is wrong with this C++ header file?\n\n```cpp\n// InventoryBin.h\n#include <iostream>\nusing namespace std;\nclass InventoryBin {\n    ...\n};\n```",
+    "options": [
+      "iostream should not be included in a header file",
+      "`using namespace std` should NOT be in a .h file — it pollutes the namespace of every file that includes this header",
+      "Class declarations are not allowed in .h files",
+      "Nothing is wrong"
+    ],
+    "correct": 1,
+    "explanation": "Putting `using namespace std` in a header file is bad practice because every file that includes the header inherits the namespace, which can cause naming conflicts. It should only be in .cpp files. The lab explicitly says 'shouldn't ever be included in your .h file!'",
+    "category": "C++ Best Practices",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What does this C++ constructor do?\n\n```cpp\nGearBin::GearBin() {\n    gearSize = 'M';\n    partName = \"Gear\";\n    maxParts = 25;\n}\n```",
+    "options": [
+      "This is a parameterised constructor — it takes arguments",
+      "This is a default (no-argument) constructor that sets default values for a GearBin",
+      "This is a destructor",
+      "This is a copy constructor"
+    ],
+    "correct": 1,
+    "explanation": "A default constructor has no parameters. It initialises a GearBin with default values: size 'M', name 'Gear', max 25 parts. The `GearBin::` prefix is the scope resolution operator, indicating this implementation belongs to the GearBin class.",
+    "category": "C++ Constructors",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "What is the purpose of the destructor in C++?\n\n```cpp\n// In InventoryBin.h\n~InventoryBin();\n\n// In InventoryBin.cpp\nInventoryBin::~InventoryBin() {\n    // empty\n}\n```",
+    "options": [
+      "It runs when the object is created to set defaults",
+      "It runs when the object is destroyed/goes out of scope — used to free resources like heap memory",
+      "It prevents the object from being copied",
+      "It is the same as a default constructor"
+    ],
+    "correct": 1,
+    "explanation": "The destructor (prefixed with ~) is automatically called when an object is destroyed. It's used to release resources (like deleting heap-allocated memory). In this lab the destructors are empty because no heap memory is manually managed, but they are still declared as good practice.",
+    "category": "C++ Constructors",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What does `::` mean in C++?\n\n```cpp\nvoid InventoryBin::print() {\n    cout << \"Part: \" << partName << endl;\n    cout << \"Quantity: \" << partQty << endl;\n}\n```",
+    "options": [
+      "A pointer dereference operator",
+      "The scope resolution operator — it tells the compiler that print() belongs to the InventoryBin class",
+      "A comparison operator",
+      "A namespace separator only"
+    ],
+    "correct": 1,
+    "explanation": "The `::` scope resolution operator specifies which class or namespace a function belongs to. In .cpp files, you must prefix method definitions with `ClassName::` so the compiler knows these implementations belong to that class.",
+    "category": "C++ Basics",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "Which access specifier should `partName` and `maxParts` be in the InventoryBin class, and why?\n\n```cpp\nclass InventoryBin {\npublic:\n    // constructors, getters, setters...\nprivate:\n    int partQty;\n___ : // what goes here?\n    string partName;\n    int maxParts;\n};\n```",
+    "options": [
+      "private — so subclasses cannot access them",
+      "public — so anyone can access them",
+      "protected — so they are hidden from outside but still accessible in subclasses like GearBin",
+      "static — so they are shared across all instances"
+    ],
+    "correct": 2,
+    "explanation": "Protected members are accessible within the class and by derived (child) classes, but not by external code. Since GearBin and ValveBin inherit from InventoryBin and need to set partName and maxParts in their constructors, protected is the correct choice.",
+    "category": "C++ Access Specifiers",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What does this C++ code do?\n\n```cpp\nvoid GearBin::print() {\n    InventoryBin::print();\n    cout << \"Gear Size: \" << gearSize << endl;\n}\n```",
+    "options": [
+      "Overrides the parent print() without calling it — only prints gear size",
+      "Calls the parent class's print() method first, then adds GearBin-specific output",
+      "Causes infinite recursion",
+      "Compilation error — you cannot call parent methods in C++"
+    ],
+    "correct": 1,
+    "explanation": "`InventoryBin::print()` explicitly calls the parent class version of print(). This is how you invoke a parent method in C++ — using the scope resolution operator. GearBin extends the output by adding its gear-specific info after the parent output.",
+    "category": "C++ Inheritance",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "In C++, if you declare a class member variable in the .h file, do you need to use `new` to create the object?\n\n```cpp\n// BinManager.h\nprivate:\n    ValveBin bin1;\n    GearBin  bin2;\n```",
+    "options": [
+      "Yes — you must write `bin1 = new ValveBin()` in the constructor",
+      "No — declaring the variable in the class body automatically creates the object on the stack when BinManager is instantiated",
+      "You need to call bin1.create() manually",
+      "The objects are only created when first accessed"
+    ],
+    "correct": 1,
+    "explanation": "In C++, value-type member variables (not pointers) are created automatically when the containing object is created. The default constructor of ValveBin and GearBin runs automatically — no `new` keyword needed. This differs from Java where objects must always be explicitly constructed.",
+    "category": "C++ Memory",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What is the output of this C++ do-while loop?\n\n```cpp\nint x = 5;\ndo {\n    cout << x << \" \";\n    x--;\n} while (x > 3);\n```",
+    "options": ["5 4 3", "5 4", "4 3", "5"],
+    "correct": 1,
+    "explanation": "A do-while loop executes the body first, then checks the condition. First iteration: prints 5, x becomes 4. Check: 4 > 3 = true. Second iteration: prints 4, x becomes 3. Check: 3 > 3 = false. Loop ends. Output: '5 4'.",
+    "category": "C++ Control Flow",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "What is `InventoryBin* pBin = nullptr;` in C++?\n\n```cpp\nInventoryBin* pBin = nullptr;\nswitch (binNumber) {\n    case 1: pBin = &bin1; break;\n    case 2: pBin = &bin2; break;\n}\n```",
+    "options": [
+      "pBin is a regular InventoryBin object",
+      "pBin is a pointer to an InventoryBin — it stores a memory address and is initialised to null (no object yet)",
+      "pBin is a reference that copies the object",
+      "nullptr means the variable is static"
+    ],
+    "correct": 1,
+    "explanation": "In C++, `*` denotes a pointer — a variable holding a memory address. `nullptr` is a null pointer (points to nothing). `&bin1` takes the address of bin1, storing it in pBin. Pointers allow you to use a single variable to reference different objects (polymorphism via pointer).",
+    "category": "C++ Pointers",
+    "difficulty": "hard",
+    "type": "mcq"
+  },
+  {
+    "question": "What does `&bin1` mean in this context?\n\n```cpp\nInventoryBin* pBin = nullptr;\npBin = &bin1;\n```",
+    "options": [
+      "A bitwise AND with bin1",
+      "The memory address of bin1 — assigns the location of bin1 to the pointer pBin",
+      "A reference copy of bin1",
+      "Declares bin1 as a reference variable"
+    ],
+    "correct": 1,
+    "explanation": "In C++, the `&` operator (when used on a variable, not in a declaration) is the address-of operator. `&bin1` gives the memory address of bin1. Assigning it to a pointer lets you use pBin to access bin1 via pointer operations.",
+    "category": "C++ Pointers",
+    "difficulty": "hard",
+    "type": "mcq"
+  },
+  {
+    "question": "What does `->` mean in C++?\n\n```cpp\npBin->getNumParts();\npBin->getMaxParts();\npBin->setNumParts(numParts + pBin->getNumParts());\n```",
+    "options": [
+      "A comparison operator — checks if pBin is greater than getNumParts",
+      "Member access through a pointer — equivalent to (*pBin).getNumParts()",
+      "A lambda arrow function",
+      "A return type annotation"
+    ],
+    "correct": 1,
+    "explanation": "`->` is the arrow operator for pointer member access. Since pBin is a pointer, you use `pBin->method()` instead of `pBin.method()`. It is shorthand for dereferencing the pointer and accessing the member: `(*pBin).method()`.",
+    "category": "C++ Pointers",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What is `static_cast<ValveBin*>(pBin)` doing?\n\n```cpp\npBin = static_cast<ValveBin*>(pBin);\npBin = &bin1;\n```",
+    "options": [
+      "Creating a new ValveBin object",
+      "Casting the InventoryBin pointer to a ValveBin pointer — telling the compiler to treat pBin as pointing to a ValveBin",
+      "Checking if pBin is a ValveBin at runtime",
+      "Deleting the current pBin and replacing it"
+    ],
+    "correct": 1,
+    "explanation": "`static_cast` is C++'s compile-time cast. Casting an InventoryBin* to ValveBin* tells the compiler the object is actually a ValveBin. This is valid because bin1 is indeed a ValveBin. It is the C++ equivalent of Java's type.cast() — used to restore the concrete type from a base-class pointer.",
+    "category": "C++ Pointers",
+    "difficulty": "hard",
+    "type": "mcq"
+  },
+  {
+    "question": "What does the `const` keyword do in this C++ method signature?\n\n```cpp\nint getNumBins() const;\n```",
+    "options": [
+      "The return value cannot be changed after being returned",
+      "The method promises not to modify any member variables of the object",
+      "The method can only be called on const objects",
+      "Both B and C are correct"
+    ],
+    "correct": 3,
+    "explanation": "A const member function (const after the parameter list) guarantees it won't modify the object's state. It also means you can call it on const objects. Both B and C are correct — const methods can be called on const objects, and they cannot modify member variables.",
+    "category": "C++ Basics",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "Which section of a C++ class can subclasses access but external code cannot?\n\n```cpp\nclass InventoryBin {\npublic:\n    // ???\nprivate:\n    // ???\nprotected:\n    // ???\n};\n```",
+    "options": [
+      "public — accessible everywhere",
+      "private — accessible only by the class itself and subclasses",
+      "protected — accessible by the class and its subclasses, but not by outside code",
+      "static — shared among all instances"
+    ],
+    "correct": 2,
+    "explanation": "Protected members are the 'middle ground': accessible within the class itself and by any derived (child) class, but not by unrelated external code. This is why partName and maxParts are protected — GearBin and ValveBin need to set them in their constructors.",
+    "category": "C++ Access Specifiers",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "What must you include to use `string` in a C++ header file?\n\n```cpp\n// InventoryBin.h\n___\nclass InventoryBin {\nprotected:\n    string partName;\n};\n```",
+    "options": ["#include <iostream>", "#include <string>", "#include <stdlib.h>", "#import string"],
+    "correct": 1,
+    "explanation": "`string` in C++ is defined in the `<string>` header. Without it, the compiler doesn't know what `string` means. `<iostream>` provides cin/cout. Note: `using namespace std` should be in .cpp files only, but the include itself is fine in headers.",
+    "category": "C++ Basics",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "What does this addParts logic guard against?\n\n```cpp\nif (numParts < 0) {\n    cout << \"\\n** Error: number of parts cannot be negative.\\n\";\n}\nelse if (pBin != nullptr) {\n    if (numParts + pBin->getNumParts() > pBin->getMaxParts()) {\n        cout << \"\\n** Error: bin can only hold a maximum of \"\n             << pBin->getMaxParts() << \" parts.\\n\";\n    } else {\n        pBin->setNumParts(numParts + pBin->getNumParts());\n        success = true;\n    }\n}\n```",
+    "options": [
+      "Only negative numbers",
+      "Two error conditions: negative part counts, and exceeding the bin's maximum capacity",
+      "Only overflow beyond maxParts",
+      "Null pointer dereference only"
+    ],
+    "correct": 1,
+    "explanation": "The code guards against two invalid states: (1) numParts being negative — you can't add a negative number of parts; (2) the total after adding exceeding maxParts — the bin has a physical capacity limit. success is only set to true when both checks pass.",
+    "category": "C++ Logic",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "In C++, what is the equivalent of Java's `System.out.println()`?\n\n```cpp\n// Java:\nSystem.out.println(\"Hello\");\n// C++: ???\n```",
+    "options": [
+      "print(\"Hello\");",
+      "printf(\"Hello\");",
+      "cout << \"Hello\" << endl;",
+      "Console.Write(\"Hello\");"
+    ],
+    "correct": 2,
+    "explanation": "`cout << value << endl` outputs to standard output and adds a newline (endl). `printf` is C-style and works but isn't idiomatic C++. `print` doesn't exist as a standalone function. `Console.Write` is C#.",
+    "category": "C++ Basics",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "What does this C++ parameterised constructor do differently from the default?\n\n```cpp\nGearBin::GearBin(int num, char size) {\n    gearSize = size;\n    partName = \"Gear\";\n    maxParts = 25;\n    // num is used via InventoryBin's parameterised constructor\n}\n```",
+    "options": [
+      "Nothing — both constructors do the same thing",
+      "It accepts arguments to set partQty and gearSize, whereas the default sets them to fixed starting values",
+      "It creates the object on the heap instead of the stack",
+      "Parameterised constructors are only called once per program"
+    ],
+    "correct": 1,
+    "explanation": "The parameterised constructor lets you customise the initial state — you pass in an int num for quantity and char size for gear size. The default constructor always starts with the same hard-coded values (e.g., gearSize = 'M'). This follows the same principle as Java constructor overloading.",
+    "category": "C++ Constructors",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "How does BinManager demonstrate polymorphism in C++?\n\n```cpp\nInventoryBin* pBin = nullptr;\nswitch (binNumber) {\n    case 1: pBin = &bin1; break; // bin1 is ValveBin\n    case 2: pBin = &bin2; break; // bin2 is GearBin\n}\npBin->print(); // calls which print()?\n```",
+    "options": [
+      "Always calls InventoryBin::print()",
+      "Calls the appropriate subclass print() at runtime if print() is declared virtual",
+      "Always calls ValveBin::print()",
+      "Causes a compilation error"
+    ],
+    "correct": 1,
+    "explanation": "In C++, polymorphism via base-class pointers only works for `virtual` methods. If print() is declared `virtual` in InventoryBin, then pBin->print() calls the correct subclass version at runtime (ValveBin::print or GearBin::print). Without virtual, it calls InventoryBin::print regardless.",
+    "category": "C++ Inheritance",
+    "difficulty": "hard",
+    "type": "mcq"
+  },
+  {
+    "question": "What is the correct way to include a class header in a .cpp file?\n\n```cpp\n// GearBin.cpp — which include is correct?\n// Option A\n#include <GearBin.h>\n// Option B\n#include \"GearBin.h\"\n// Option C\nimport GearBin;\n// Option D\nusing GearBin;\n```",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "correct": 1,
+    "explanation": "User-defined headers use double quotes: `#include \"GearBin.h\"`. Angle brackets `<>` are for standard library headers like `<iostream>` or `<string>`. `import` and `using` with a filename are not valid C++ include syntax.",
+    "category": "C++ Basics",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "What is the default constructor for ValveBin expected to set up?\n\n```cpp\nValveBin::ValveBin() {\n    ___ = \"Ball Valve\";\n    ___ = \"Valve\";\n    ___ = 30;\n}\n```",
+    "options": [
+      "valveType, partQty, maxParts",
+      "valveType, partName, maxParts",
+      "partName, valveType, partQty",
+      "gearSize, partName, maxParts"
+    ],
+    "correct": 1,
+    "explanation": "The lab specifies: default ValveBin sets valveType to 'Ball Valve', partName to 'Valve', and maxParts to 30. partQty is not set here (it's handled by the InventoryBin constructor). gearSize is a GearBin field, not ValveBin.",
+    "category": "C++ Constructors",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What does `return 0;` mean at the end of `main()` in C++?\n\n```cpp\nint main() {\n    // ... program logic\n    return 0;\n}\n```",
+    "options": [
+      "It returns the number of errors that occurred",
+      "It signals to the operating system that the program exited successfully (0 = success)",
+      "It clears all memory used by the program",
+      "It is optional and has no effect"
+    ],
+    "correct": 1,
+    "explanation": "By convention, `main()` returns an integer exit code to the OS. 0 means successful execution, non-zero values indicate errors. In modern C++ the compiler inserts `return 0` implicitly for main(), but it is good practice to include it explicitly.",
+    "category": "C++ Basics",
+    "difficulty": "easy",
+    "type": "mcq"
+  },
+  {
+    "question": "How does C++ inheritance compare to Java in this code?\n\n```cpp\n// C++\nclass GearBin : public InventoryBin { };\n\n// Java equivalent:\nclass GearBin extends InventoryBin { }\n```",
+    "options": [
+      "They are identical in every way",
+      "C++ uses `: public ClassName` while Java uses `extends ClassName` — both achieve single inheritance of a parent class",
+      "C++ inheritance is always private by default",
+      "Java allows multiple inheritance of classes; C++ does not"
+    ],
+    "correct": 1,
+    "explanation": "Both achieve the same inheritance relationship with different syntax. C++ uses `: public BaseClass` (public inheritance means the parent's public/protected access is preserved). Java uses `extends`. Note: C++ actually supports multiple class inheritance, while Java does not (only interface multiple implementation).",
+    "category": "C++ Inheritance",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "What happens if `updateBin` is called with binNumber = 3 in BinManager?\n\n```cpp\nbool BinManager::updateBin(int binNumber) {\n    bool success = false;\n    InventoryBin* pBin = nullptr;\n    switch (binNumber) {\n        case 1: pBin = &bin1; break;\n        case 2: pBin = &bin2; break;\n    }\n    // later: if (pBin != nullptr) { ... }\n    return success;\n}\n```",
+    "options": [
+      "Crashes with a segmentation fault",
+      "pBin remains nullptr, the null check prevents any operation, and success = false is returned",
+      "Automatically creates a new bin",
+      "Compilation error — switch must have a default case"
+    ],
+    "correct": 1,
+    "explanation": "If binNumber is 3, no case matches, pBin stays nullptr. The guard `if (pBin != nullptr)` prevents dereferencing a null pointer. The method returns false safely. This is defensive programming — always check pointers before using them in C++.",
+    "category": "C++ Logic",
+    "difficulty": "medium",
+    "type": "mcq"
+  },
+  {
+    "question": "Which correctly describes what `numBins` represents in BinManager?\n\n```cpp\nclass BinManager {\nprivate:\n    int numBins;\n    ValveBin bin1;\n    GearBin bin2;\npublic:\n    int getNumBins() const;\n};\n```",
+    "options": [
+      "The maximum number of bins allowed",
+      "A counter tracking how many bins are managed — used to validate user input in the menu loop",
+      "The number of parts currently in all bins combined",
+      "A static count shared across all BinManager instances"
+    ],
+    "correct": 1,
+    "explanation": "numBins stores the count of managed bins (set to 2 in the constructor). It's used in main() to validate menu input: `while (choice < 0 || choice > binMgr.getNumBins())`. This prevents the user from selecting a bin number that doesn't exist.",
+    "category": "C++ Classes",
+    "difficulty": "medium",
+    "type": "mcq"
+  }
+]
